@@ -1,0 +1,118 @@
+.workcard-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.workcard-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 12px;
+}
+
+.workcard-title {
+    flex: 1;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-right: 12px;
+    text-align: left;
+}
+
+
+.workcard-desc {
+    flex: 1;
+    font-size: 1.2rem;
+    color: #ffffff;
+    padding: 0 16px;
+    text-align: left;
+}
+
+.workcard-year {
+    flex: 0.5;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: left;
+}
+
+.workcard-row:hover .workcard-title {
+    color: #61dafb;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.workcard-media {
+    width: 75%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.workcard-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    visibility: hidden;
+    transform: translateY(0);
+    transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.workcard-row:hover .workcard-title+.workcard-image-wrapper,
+.workcard-title:hover+.workcard-image-wrapper {
+    visibility: visible;
+    transform: translateY(-10px) scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .workcard-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .workcard-title {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 8px 0;
+        font-weight: bold;
+    }
+
+    .workcard-subrow {
+        display: flex;
+        flex-direction: row;
+        width: 70%;
+    }
+
+    .workcard-desc,
+    .workcard-year {
+        flex: 1;
+        font-size: 0.8rem;
+        padding: 8px 0;
+    }
+
+    .workcard-image-wrapper {
+        justify-content: center;
+        width: 70%;
+        margin-top: 12px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .workcard-media {
+        width: 70%;
+        height: 150px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    .workcard-title,
+    .workcard-desc,
+    .workcard-year {
+        font-size: 0.9rem;
+    }
+
+    .workcard-media {
+        height: 100px;
+    }
+}

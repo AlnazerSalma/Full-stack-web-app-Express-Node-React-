@@ -1,0 +1,218 @@
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.gallery {
+    --_width: 50px;
+    --_border-width: 3px;
+    --_border-width-hover: 6px;
+    --_border-clr:#041E42;
+    --_h2-bg-clr: #0093AF;
+    --_h2-txt-clr: rgb(255, 255, 255);
+    --_transition-speed: 300ms;
+    --_clip: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    display: grid;
+    grid-template-columns: repeat(10, var(--_width));
+    gap: .75em;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.avatar {
+    background-color: var(--_border-clr);
+    grid-column: span 4 / span 4;
+    grid-row: span 4 / span 4;
+    width: calc(var(--_width) * 3);
+    height: calc(var(--_width) * 3);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    clip-path: var(--_clip);
+    transition: clip-path ease-in-out var(--_transition-speed) var(--_transition-speed),
+        opacity ease-in-out var(--_transition-speed),
+        scale ease-in-out var(--_transition-speed);
+}
+
+.icon {
+    color: white;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.special-avatar {
+    grid-row-start: 1;
+    grid-column-start: 5;
+    grid-column: span 4 / span 4;
+    grid-row: span 4 / span 4;
+    width: calc(var(--_width) * 3);
+    height: calc(var(--_width) * 3);
+}
+
+.avatar::before {
+    content: '';
+    position: absolute;
+    inset: var(--_border-width);
+    clip-path: var(--_clip);
+    background-image: var(--img);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: var(--_transition-speed) ease-in-out;
+}
+
+.avatar::after {
+    content: attr(title);
+    position: absolute;
+    width: 100%;
+    padding: .25rem 0;
+    text-align: center;
+    inset: 85% 0 0 0;
+    background: var(--_h2-bg-clr);
+    color: var(--_h2-txt-clr);
+    font-size: 0.6rem;
+    transition: all var(--_transition-speed) ease-in-out;
+    opacity: 0;
+    translate: 0 100%;
+    z-index: 3;
+}
+
+.avatar:has(~ .avatar:hover),
+.avatar:hover~.avatar {
+    opacity: 75%;
+    scale: 75%;
+}
+
+.avatar:hover {
+    z-index: 100;
+    scale: 150%;
+}
+
+.avatar:hover::before {
+    inset: var(--_border-width-hover);
+}
+
+.avatar:hover::after {
+    opacity: 1;
+    translate: 0;
+    transition-delay: calc(var(--_transition-speed) * 0.5);
+}
+
+.avatar:not(:hover) {
+    animation: KPzIndexHack 500ms;
+}
+
+.avatar:nth-child(1) {
+    grid-row-start: 1;
+    grid-column-start: 5;
+}
+
+.avatar:nth-child(2) {
+    grid-row-start: 3;
+    grid-column-start: 3;
+}
+
+.avatar:nth-child(3) {
+    grid-row-start: 3;
+    grid-column-start: 7;
+}
+
+.avatar:nth-child(4) {
+    grid-row-start: 5;
+    grid-column-start: 1;
+}
+
+.avatar:nth-child(5) {
+    grid-row-start: 5;
+    grid-column-start: 5;
+}
+
+.avatar:nth-child(6) {
+    grid-row-start: 5;
+    grid-column-start: 9;
+}
+
+.avatar:nth-child(7) {
+    grid-row-start: 7;
+    grid-column-start: 3;
+}
+
+.avatar:nth-child(8) {
+    grid-row-start: 7;
+    grid-column-start: 7;
+}
+
+.avatar:nth-child(9) {
+    grid-row-start: 9;
+    grid-column-start: 1;
+}
+
+.avatar:nth-child(10) {
+    grid-row-start: 9;
+    grid-column-start: 5;
+}
+
+.avatar:nth-child(11) {
+    grid-row-start: 9;
+    grid-column-start: 9;
+}
+
+.avatar:nth-child(12) {
+    grid-row-start: 11;
+    grid-column-start: 3;
+}
+
+.avatar:nth-child(13) {
+    grid-row-start: 11;
+    grid-column-start: 7;
+}
+
+.avatar:nth-child(14) {
+    grid-row-start: 13;
+    grid-column-start: 5;
+}
+
+@keyframes KPzIndexHack {
+    100% {
+        z-index: 10;
+    }
+}
+
+@media (max-width: 767px) {
+    .gallery {
+        --_width: 30px;
+        grid-template-columns: repeat(8, var(--_width));
+        gap: 0.5em;
+        padding: 30px 0;
+    }
+
+    .avatar {
+        width: calc(var(--_width) * 3);
+        height: calc(var(--_width) *3);
+        grid-column: span 3.5 / span 3.5;
+        grid-row: span 3.5 / span 3.5;
+    }
+
+    .avatar::after {
+        font-size: 0.5rem;
+        inset: 80% 0 0 0;
+    }
+
+    .icon {
+        font-size: 2.5rem;
+    }
+
+    .special-avatar {
+        width: calc(var(--_width) * 2.5);
+        height: calc(var(--_width) * 2.5);
+        grid-column: span 3 / span 3;
+        grid-row: span 3 / span 3;
+    }
+}

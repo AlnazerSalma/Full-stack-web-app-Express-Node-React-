@@ -1,0 +1,70 @@
+html {
+  --section-background-color: linear-gradient(to bottom left,
+      rgba(20, 0, 0, 0.755),
+      rgb(14, 1, 39));
+
+  --image-gradient: linear-gradient(to bottom left,
+      rgba(20, 0, 0, 0.755),
+      rgb(14, 1, 39));
+
+  --imp-text-color: #0093AF;
+  min-height: 80vh;
+}
+
+.purple {
+  color: var(--imp-text-color) !important;
+}
+
+button:focus {
+  box-shadow: none !important;
+}
+
+/* --------- */
+/*  Preloader */
+/* --------- */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: #0c0513;
+  background-image: url(./Assets/pre.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#preloader-none {
+  opacity: 0;
+}
+
+#no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* --------- */
+/*Scrollbar   */
+/* --------- */
+
+::-webkit-scrollbar {
+  display: none;
+}
+/* --------- */
+/*Error */
+/* --------- */
+.error-message {
+  color: rgba(227, 42, 42, 0.745);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* --------- */
+/*loading */
+/* --------- */
+.loading-message {
+  color: rgb(141, 131, 131);
+  font-size: 1rem;
+  margin-top: 10px;
+}

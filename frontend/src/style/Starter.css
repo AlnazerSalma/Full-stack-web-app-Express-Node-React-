@@ -1,0 +1,126 @@
+
+/* --------- */
+/* starter*/
+/* --------- */
+.starter-section {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-image: var(--section-background-color) !important;
+  color: white;
+}
+
+.starter-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.starter-left {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.starter-heading {
+  font-size: 3em;
+  margin-bottom: 1rem;
+}
+
+.starter-subheading {
+  font-size: 2.4rem;
+  white-space: pre-line;
+}
+
+.starter-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.starter-icon span {
+  font-size: 3rem;
+  animation: rotateIcon 9s linear infinite;
+  display: inline-block;
+  transform-origin: center center;
+}
+
+
+
+.starter-icon img {
+  width: 100%;
+  height: 100%;
+  animation: rotateIcon 6s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hover-link {
+  cursor: pointer;
+  color: #0093af;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.hover-link:hover {
+  color: #b8afc7;
+}
+@media (max-width: 767px) {
+  .starter-heading {
+    font-size: 2em;
+  }
+
+  .starter-subheading {
+    font-size: 1.5rem;
+  }
+
+  .starter-left {
+    padding: 1.5rem;
+  }
+
+  .starter-icon span {
+    font-size: 2.2rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .starter-heading {
+    font-size: 1.5em;
+  }
+
+  .starter-subheading {
+    font-size: 1.4rem;
+  }
+
+  .starter-left {
+    padding: 1rem;
+  }
+
+  .starter-icon {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .starter-icon span {
+    font-size: 1.6rem;
+  }
+}

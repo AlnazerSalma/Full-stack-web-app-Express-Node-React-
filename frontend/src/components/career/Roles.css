@@ -1,0 +1,36 @@
+.roles {
+    margin-bottom: 1.5rem;
+  }
+  .roles-title {
+    transition: color 0.2s ease;
+  }
+  
+  .roles:hover .roles-title {
+    color: #0093af; 
+  }
+  
+  .roles-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .roles-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+  }
+  
+  .roles-meta {
+    font-size: 1rem;
+    color: #ccc;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .roles-location,
+  .roles-type {
+    font-style: italic;
+  }
+  

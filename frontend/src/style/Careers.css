@@ -1,0 +1,38 @@
+/* --------- */
+/* Careers */
+/* --------- */
+.careers-section {
+  position: relative !important;
+  color: white !important;
+  padding-top: 150px !important;
+  padding-bottom: 30px !important;
+  background: linear-gradient(rgba(20, 0, 0, 0.755), rgb(14, 1, 39));
+min-height: 92vh;
+}
+.careers-heading {
+  text-align: left;
+  font-size: 1.5rem;
+  color: whitesmoke;
+  margin-bottom: 1rem;
+}
+
+.careers-title {
+  text-align: left;
+  font-size: 4rem;
+  color: whitesmoke;
+  margin-bottom: 4%;
+}
+
+.careers-subtitle {
+  text-align: left;
+  font-size: 2.75rem;
+  color: whitesmoke;
+  margin-bottom: 8.2%;
+}
+
+.careers-open-roles {
+  text-align: left;
+  font-size: 1.25rem;
+  color: whitesmoke;
+  margin-bottom: 2rem;
+}
