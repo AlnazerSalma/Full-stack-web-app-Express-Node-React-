@@ -34,7 +34,7 @@ function CareerPage() {
               Great work starts with <br /> great people —{" "}
               <strong className="purple">join us.</strong>
             </h1>{" "}
-            {loading && <p className="loading-message">Loading roles...</p>}
+            {loading && <p className="loading-message">{loading}</p>}
             {error && (
               <>
                 <p className="error-message">{error}</p>

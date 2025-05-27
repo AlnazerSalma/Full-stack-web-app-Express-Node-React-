@@ -30,7 +30,7 @@ const HomePageSlider = () => {
 
 
   if (loading) {
-    return <div className="loading-message">Loading ...</div>;
+    return <div className="loading-message">{loading}</div>;
   }
 
   if (error) {

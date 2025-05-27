@@ -19,7 +19,7 @@ const HeroRightSection = () => {
 
                 <div></div>
                 <div className="floating-div animated-float-1">
-                  <FloatinDiv img={hiring} text1="Web" text2="Developer" />
+                  <FloatinDiv img={hiring} text1="Senior" text2="Designer" />
                 </div>
 
                 <div className="floating-div animated-float-2">

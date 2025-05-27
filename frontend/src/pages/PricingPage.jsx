@@ -13,7 +13,7 @@ function PricePage() {
 
         {loading ? (
            <div className="loading-message">
-            <p className="loading-message">Loading ...</p>
+            <p className="loading-message">{loading}</p>
           </div>
         ) : error ? (
            <p className="error-message">{error}</p>

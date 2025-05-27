@@ -26,7 +26,7 @@ function StarterPage({ onStart }) {
           </strong>
         </h2>
 
-        {loading && <p className="loading-message">Loading ...</p>}
+        {loading && <p className="loading-message">{loading}</p>}
 
         {error && <p className="error-message">{error}</p>}
 

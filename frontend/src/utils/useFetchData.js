@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useFetchData = (url, maxRetries = 3, retryDelay = 1000) => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState("Loading...");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -11,21 +11,21 @@ const useFetchData = (url, maxRetries = 3, retryDelay = 1000) => {
     let isCancelled = false;
 
     const fetchData = async () => {
-      setLoading(true);
+      setLoading("Loading...");
       while (retries < maxRetries) {
         try {
           const response = await axios.get(url);
           if (!isCancelled) {
             setData(response.data);
             setError(null);
-            setLoading(false);
+            setLoading(null);
           }
           return;
         } catch (err) {
           retries += 1;
           if (retries >= maxRetries && !isCancelled) {
             setError("Failed to fetch data. Please try again later.");
-            setLoading(false);
+            setLoading(null);
           } else {
             await new Promise((res) => setTimeout(res, retryDelay));
           }

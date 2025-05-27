@@ -11,17 +11,13 @@ function VideoSlider() {
 
   if (loading) {
     return (
-      <Container>
-      <p className="loading-message">Loading ...</p>
-      </Container>
+      <p className="loading-message">{loading}</p>
     );
   }
 
   if (error) {
     return (
-      <Container>
         <p className="error-message">Failed to load videos.</p>
-      </Container>
     );
   }
 
