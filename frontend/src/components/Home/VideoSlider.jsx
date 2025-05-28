@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import useFetch from "../../utils/useFetch";
-import'../../style/Home.css';
+import "../../style/Home.css";
+import YouTubeEmbed from "../../utils/youTubeEmbed";
 function VideoSlider() {
   const {
     data: videos,
@@ -10,28 +11,24 @@ function VideoSlider() {
   } = useFetch("http://localhost:5000/api/homeVideos");
 
   if (loading) {
-    return (
-      <p className="loading-message">{loading}</p>
-    );
+    return <p className="loading-message">{loading}</p>;
   }
 
   if (error) {
-    return (
-        <p className="error-message">Failed to load videos.</p>
-    );
+    return <p className="error-message">Failed to load videos.</p>;
   }
 
   return (
     <Container>
       <Row>
-          <h1 className="home-about-title">
+        <h1 className="home-about-title">
           Why <span className="purple">Haptic ?</span>
-          </h1>
-          <p className="home-about-body">
-            Startups come to us when <br />
-            they need a team that can <br />
-            deliver real results.
-          </p>
+        </h1>
+        <p className="home-about-body">
+          Startups come to us when <br />
+          they need a team that can <br />
+          deliver real results.
+        </p>
       </Row>
       <Row className="mt-4">
         {videos.map((videoItem, index) => (
@@ -47,20 +44,8 @@ function VideoSlider() {
               />
               <h5 className="mb-0">{videoItem.name}</h5>
             </div>
-
-            {/* YouTube Video */}
-            <div className="video-container rounded-video">
-              <iframe
-                src={
-                  videoItem.video.replace("youtu.be", "www.youtube.com/embed") +
-                  "?controls=1&modestbranding=1&rel=0&showinfo=0"
-                }
-                title={videoItem.name}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {/* Use reusable YouTubeEmbed component */}
+            <YouTubeEmbed videoUrl={videoItem.video} title={videoItem.name} />
           </Col>
         ))}
       </Row>
