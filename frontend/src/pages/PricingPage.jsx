@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import ProjectCard from "../components/card/pricing/PricingCards";
-import useFetchData from "../utils/useFetchData"; // Adjust path if different
+import useFetch from "../utils/useFetch"; // Adjust path if different
 
 function PricePage() {
-  const { data: pricingPlans, loading, error } = useFetchData("http://localhost:5000/api/pricing");
+  const { data: pricingPlans, loading, error } = useFetch("http://localhost:5000/api/pricing");
 
   return (
     <Container fluid className="project-section">

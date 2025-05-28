@@ -1,28 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
+import useOnClickOutside from "../../hooks/useOnClickOutside"; // adjust path if needed
 import "./RightSlidePanel.css";
 
 function WorksSliderPanel({ isOpen, onClose, role }) {
-  useEffect(() => {
-    function handleOutsideClick(event) {
-      if (event.target.classList.contains("slide-panel-overlay")) {
-        onClose();
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, [isOpen, onClose]);
+  const panelRef = useRef();
+  useOnClickOutside(panelRef, onClose, isOpen);
 
   if (!isOpen || !role) return null;
 
   return (
     <div className="slide-panel-overlay">
-      <div className="slide-panel">
+      <div className="slide-panel" ref={panelRef}>
         <div className="panel-header">
           <div className="panel-left-w">
             <img src={role.image} alt={role.title} className="role-icon" />
@@ -31,38 +19,27 @@ function WorksSliderPanel({ isOpen, onClose, role }) {
               <div className="panel-min-title">{role.minTitle}</div>
             </div>
           </div>
-
-          <button className="close-btn" onClick={onClose}>
-            ×
-          </button>
+          <button className="close-btn" onClick={onClose}>×</button>
         </div>
+
         <div className="panel-content">
           <h1>{role.desc}</h1>
           <p>{role.minDesc}</p>
+
           <div className="role-tags">
-            {role.type.split(",").map((tag, index) => (
-              <span key={index} className="role-tag">
-                {tag.trim()}
-              </span>
+            {role.type.split(",").map((tag, i) => (
+              <span key={i} className="role-tag">{tag.trim()}</span>
             ))}
           </div>
-          {role.media && role.media.length > 0 && (
+
+          {role.media?.length > 0 && (
             <div className="role-media">
-              {role.media.map((item, index) => (
-                <div key={index} className="media-item">
+              {role.media.map((item, i) => (
+                <div key={i} className="media-item">
                   {item.type === "image" ? (
-                    <img src={item.src} alt={`media-${index}`} />
+                    <img src={item.src} alt={`media-${i}`} />
                   ) : item.type === "video" ? (
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      src={item.src}
-                      className="video-player"
-                      title={`video-${index}`}
-                    >
-                      Your browser does not support the video tag.
-                    </video>
+                    <video autoPlay muted loop src={item.src} className="video-player" />
                   ) : null}
                 </div>
               ))}

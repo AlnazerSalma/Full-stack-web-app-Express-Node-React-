@@ -1,40 +1,29 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./AnimatedSlider.css";
 import WorksSliderPanel from "../right_slider_panel/WorksCareerRightSlidePanel";
-import useFetchData from "../../utils/useFetchData";
+import useFetch from "../../utils/useFetch";
+import useRightSlidePanel from "../../hooks/useRightSlidePanel";
+import useSliderAnimation from "../../hooks/useSliderAnimation";
+import mediaRenderer from "../../utils/mediaRenderer";
 
 const HomePageSlider = () => {
   const sliderTrackRef = useRef(null);
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
   const {
     data: works,
     loading,
     error,
-  } = useFetchData("http://localhost:5000/api/works");
+  } = useFetch("http://localhost:5000/api/works");
   const slideDuration = 40;
+  const { isOpen, selectedItem, openPanel, closePanel } = useRightSlidePanel();
 
-  const handleItemClick = (work) => {
-    setSelectedItem(work);
-    setIsPanelOpen(true);
-  };
-
-  const handleClosePanel = () => {
-    setIsPanelOpen(false);
-  };
-
-  if (works && sliderTrackRef.current) {
-    sliderTrackRef.current.style.animation = `${slideDuration}s linear infinite slideAnimation`;
-  }
-
-
+  useSliderAnimation(sliderTrackRef, works, slideDuration);
 
   if (loading) {
     return <div className="loading-message">{loading}</div>;
   }
 
   if (error) {
-    return  <p className="error-message">Failed to fitch slider data.</p>
+    return <p className="error-message">Failed to fetch slider data.</p>;
   }
 
   return (
@@ -44,24 +33,25 @@ const HomePageSlider = () => {
           <div
             className="slider-item"
             key={index}
-            onClick={() => handleItemClick(work)}
+            onClick={() => openPanel(work)}
           >
             <div className="slider-content">
               <h3>{work.title || work.name}</h3>
               <p>{work.desc}</p>
             </div>
-            {work.media?.[0]?.type === "video" ? (
-              <video src={work.media[0]?.src} autoPlay loop muted playsInline />
-            ) : (
-              <img src={work.media?.[0]?.src} alt={work.title || work.name} />
-            )}
+            {mediaRenderer({
+              src: work.media?.[0]?.src,
+              type: work.media?.[0]?.type,
+              alt: work.title || work.name,
+              className: "media-class-name",
+            })}
           </div>
         ))}
       </div>
-      {isPanelOpen && (
+      {selectedItem && (
         <WorksSliderPanel
-          isOpen={isPanelOpen}
-          onClose={handleClosePanel}
+          isOpen={isOpen}
+          onClose={closePanel}
           role={selectedItem}
         />
       )}

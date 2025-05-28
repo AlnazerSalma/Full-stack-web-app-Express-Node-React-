@@ -1,5 +1,5 @@
 import AnimatedSlider from "../components/animated_slider/StarterPageSlider";
-import useFetchData from "../utils/useFetchData";
+import useFetch from "../utils/useFetch";
 import "../style/Starter.css";
 
 function StarterPage({ onStart }) {
@@ -7,7 +7,7 @@ function StarterPage({ onStart }) {
     data: sliderItems,
     loading,
     error,
-  } = useFetchData("http://localhost:5000/api/sliders");
+  } = useFetch("http://localhost:5000/api/sliders");
   return (
     <section className="starter-section">
       <div className="starter-left">

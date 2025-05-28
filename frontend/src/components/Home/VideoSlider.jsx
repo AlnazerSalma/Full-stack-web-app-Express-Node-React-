@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import useFetchData from "../../utils/useFetchData";
+import useFetch from "../../utils/useFetch";
 import'../../style/Home.css';
 function VideoSlider() {
   const {
     data: videos,
     loading,
     error,
-  } = useFetchData("http://localhost:5000/api/homeVideos");
+  } = useFetch("http://localhost:5000/api/homeVideos");
 
   if (loading) {
     return (

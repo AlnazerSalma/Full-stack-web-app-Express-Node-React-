@@ -1,43 +1,21 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import "./ContactForm.css";
-import { postFormData } from "../../utils/postFormData"; 
-
-
+import useForm from "../../hooks/useForm";
 const ContactForm = () => {
-  const initialValues = {
-    user_name: "",
-    user_email: "",
-    message: "",
-  };
-
-  const validationSchema = Yup.object({
-    user_name: Yup.string().required("Name is required"),
-    user_email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    message: Yup.string().required("Message is required"),
-  });
-
-  const sendEmail = async (values, { resetForm, setSubmitting }) => {
-    try {
-      const data = await postFormData("http://localhost:5000/api/contact", values);
-      console.log("Response from backend:", data);
-      resetForm();
-    } catch (error) {
-      console.error("Error sending to backend:", error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
+  const {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    isLoading,
+    error,
+  } = useForm("http://localhost:5000/api/contact");
   return (
     <div className="form-box">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={sendEmail}
+        onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
           <Form>
@@ -71,7 +49,14 @@ const ContactForm = () => {
               className="error-message"
             />
 
-            <input type="submit" value="Send" disabled={isSubmitting} />
+            <input
+              type="submit"
+              value={isLoading ? "Sending..." : "Send"}
+              disabled={isSubmitting || isLoading}
+            />
+            {error && (
+              <div className="error-message">Failed to send. Try again.</div>
+            )}
           </Form>
         )}
       </Formik>
