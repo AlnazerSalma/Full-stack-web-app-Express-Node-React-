@@ -1,9 +1,12 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./WorkCard.css";
-import WorksSliderPanel from "../../right_slider_panel/WorksCareerRightSlidePanel";
 import useFetch from "../../../utils/useFetch";
 import useRightSlidePanel from "../../../hooks/useRightSlidePanel";
 import mediaRenderer from "../../../utils/mediaRenderer";
+
+const WorksSliderPanel = lazy(() =>
+  import("../../right_slider_panel/WorksCareerRightSlidePanel")
+);
 
 function WorkCard() {
   const {
@@ -42,13 +45,14 @@ function WorkCard() {
           );
         })}
       </div>
-
       {selectedItem && (
+         <Suspense fallback={<div>Loading details...</div>}>
         <WorksSliderPanel
           isOpen={isOpen}
           onClose={closePanel}
           role={selectedItem}
         />
+        </Suspense>
       )}
     </>
   );

@@ -1,7 +1,13 @@
+import React, { Suspense, lazy } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Type from "../components/Home/Type";
-import Home2 from "../components/Home/Home2";
 import HeroRightSection from "../components/Home/hiring_right_side/HiringRightSide";
+
+const Home2 = lazy(() => {
+  console.log("Home2 component is being lazy loaded!");
+  return import("../components/Home/Home2");
+});
+
 
 function HomePage() {
   return (
@@ -10,12 +16,7 @@ function HomePage() {
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
-              <h1 style={{ paddingBottom: 15 }} className="heading">
-                Haptic{" "}
-                <span className="wave" role="img" aria-labelledby="wave">
-                  🧐
-                </span>
-              </h1>
+              <h1 className="heading">Haptic 🧐</h1>
               <h1 className="heading-name">
                 We help ambitious
                 <br />
@@ -27,13 +28,18 @@ function HomePage() {
                 <Type />
               </div>
             </Col>
-            <Col> <div className="d-none d-md-block">
-    <HeroRightSection />
-  </div></Col>
-            
+            <Col>
+              {" "}
+              <div className="d-none d-md-block">
+                <HeroRightSection />
+              </div>
+            </Col>
           </Row>
         </Container>
-        <Home2 />
+         {/* Lazy load heavy section */}
+        <Suspense fallback={<div>Loading more content...</div>}>
+          <Home2 />
+        </Suspense>
       </Container>
     </section>
   );

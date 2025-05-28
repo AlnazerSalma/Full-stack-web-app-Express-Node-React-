@@ -1,10 +1,13 @@
-import React, { useRef } from "react";
+import React, { lazy, Suspense, useRef } from "react";
 import "./AnimatedSlider.css";
-import WorksSliderPanel from "../right_slider_panel/WorksCareerRightSlidePanel";
 import useFetch from "../../utils/useFetch";
 import useRightSlidePanel from "../../hooks/useRightSlidePanel";
 import useSliderAnimation from "../../hooks/useSliderAnimation";
 import mediaRenderer from "../../utils/mediaRenderer";
+
+const WorksSliderPanel = lazy(() =>
+  import("../right_slider_panel/WorksCareerRightSlidePanel")
+);
 
 const HomePageSlider = () => {
   const sliderTrackRef = useRef(null);
@@ -49,11 +52,15 @@ const HomePageSlider = () => {
         ))}
       </div>
       {selectedItem && (
-        <WorksSliderPanel
-          isOpen={isOpen}
-          onClose={closePanel}
-          role={selectedItem}
-        />
+        <Suspense
+          fallback={<div>Loading details...</div>}
+        >
+          <WorksSliderPanel
+            isOpen={isOpen}
+            onClose={closePanel}
+            role={selectedItem}
+          />
+        </Suspense>
       )}
     </div>
   );

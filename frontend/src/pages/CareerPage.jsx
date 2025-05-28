@@ -1,10 +1,13 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Roles from "../components/career/Roles";
-import CareerRightSlidePanel from "../components/right_slider_panel/CareerRightSlidePanel";
 import useFetch from "../utils/useFetch";
 import useRightSlidePanel from "../hooks/useRightSlidePanel";
 import "../style/Careers.css";
+
+const CareerRightSlidePanel = lazy(() =>
+  import("../components/right_slider_panel/CareerRightSlidePanel")
+);
 
 function CareerPage() {
   const {
@@ -51,11 +54,13 @@ function CareerPage() {
       </Container>
 
       {selectedItem && (
+        <Suspense fallback={<div>Loading details...</div>}>
         <CareerRightSlidePanel
            isOpen={isOpen}
            onClose={closePanel}
          role={selectedItem}
         />
+        </Suspense>
       )}
     </Container>
   );

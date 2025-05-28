@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import useOnClickOutside from "../../hooks/useOnClickOutside"; // adjust path if needed
+import useOnClickOutside from "../../hooks/useOnClickOutside";
+import MediaRenderer from "../../utils/mediaRenderer";// adjust path if needed
 import "./RightSlidePanel.css";
 
 function WorksSliderPanel({ isOpen, onClose, role }) {
@@ -31,16 +32,16 @@ function WorksSliderPanel({ isOpen, onClose, role }) {
               <span key={i} className="role-tag">{tag.trim()}</span>
             ))}
           </div>
-
-          {role.media?.length > 0 && (
+         {role.media?.length > 0 && (
             <div className="role-media">
               {role.media.map((item, i) => (
                 <div key={i} className="media-item">
-                  {item.type === "image" ? (
-                    <img src={item.src} alt={`media-${i}`} />
-                  ) : item.type === "video" ? (
-                    <video autoPlay muted loop src={item.src} className="video-player" />
-                  ) : null}
+                  <MediaRenderer
+                    src={item.src}
+                    type={item.type}
+                    alt={`media-${i}`}
+                    className={item.type === "video" ? "video-player" : ""}
+                  />
                 </div>
               ))}
             </div>
