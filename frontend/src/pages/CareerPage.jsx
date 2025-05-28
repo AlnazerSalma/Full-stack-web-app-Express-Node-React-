@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Roles from "../components/career/Roles";
 import CareerRightSlidePanel from "../components/right_slider_panel/CareerRightSlidePanel";
 import useFetch from "../utils/useFetch";
-import useRightSlidePanel from "../hook/useRightSlidePanel";
+import useRightSlidePanel from "../hooks/useRightSlidePanel";
 import "../style/Careers.css";
 
 function CareerPage() {

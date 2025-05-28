@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import useOnClickOutside from "../../hook/useOnClickOutside";// adjust path if needed
+import useOnClickOutside from "../../hooks/useOnClickOutside";// adjust path if needed
 import "./RightSlidePanel.css";
 
 function CareerRightSlidePanel({ isOpen, onClose, role }) {

@@ -1,22 +1,21 @@
 import React from "react";
-
-const mediaRenderer = ({ src, type, alt = "", className = "" }) => {
+const MediaRenderer = ({ src, type, alt = "", className = "" }) => {
   if (!src) return null;
 
-  if (type === "video" || src.endsWith(".mp4")) {
-    return (
-      <video
-        src={src}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className={className}
-      />
-    );
-  }
+  const isVideo = type === "video" || src.endsWith(".mp4");
 
-  return <img src={src} alt={alt} className={className} />;
+  return isVideo ? (
+    <video
+      src={src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={className}
+    />
+  ) : (
+    <img src={src} alt={alt} className={className} />
+  );
 };
 
-export default mediaRenderer;
+export default MediaRenderer;
