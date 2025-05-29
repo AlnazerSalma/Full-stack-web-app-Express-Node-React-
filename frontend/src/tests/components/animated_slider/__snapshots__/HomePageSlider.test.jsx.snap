@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePageSlider renders WorksSliderPanel when selectedItem exists 1`] = `
+<div>
+  <div
+    class="slider-wrapper"
+  >
+    <div
+      class="slider-track"
+    >
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h3>
+            Work One
+          </h3>
+          <p>
+            Description One
+          </p>
+        </div>
+      </div>
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h3>
+            Work Two
+          </h3>
+          <p>
+            Description Two
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="works-slider-panel"
+      role="[object Object]"
+    >
+      Mocked WorksSliderPanel
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HomePageSlider renders error message and matches snapshot 1`] = `
+<div>
+  <p
+    class="error-message"
+  >
+    Failed to fetch slider data.
+  </p>
+</div>
+`;
+
+exports[`HomePageSlider renders loading state and matches snapshot 1`] = `
+<div>
+  <div
+    class="loading-message"
+  >
+    Loading works...
+  </div>
+</div>
+`;
+
+exports[`HomePageSlider renders slider items and mediaRenderer called correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="slider-wrapper"
+  >
+    <div
+      class="slider-track"
+    >
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h3>
+            Work One
+          </h3>
+          <p>
+            Description One
+          </p>
+        </div>
+      </div>
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h3>
+            Work Two
+          </h3>
+          <p>
+            Description Two
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

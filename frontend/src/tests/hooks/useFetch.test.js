@@ -10,7 +10,7 @@ describe('useFetch hook', () => {
     jest.clearAllMocks();
   });
 
-  it('should fetch data successfully', async () => {
+  it('fetch data successfully', async () => {
   const mockData = [{ id: 1, title: 'Test' }];
   axios.get.mockResolvedValueOnce({ data: mockData });
 
@@ -27,7 +27,7 @@ describe('useFetch hook', () => {
   expect(result.current.error).toBe(null);
 });
 
-it('should retry and eventually fail after max retries', async () => {
+it('retry fetching data up to max retries and then fail with error message', async () => {
   axios.get.mockRejectedValue(new Error('Network Error'));
 
   const { result } = renderHook(() => useFetch('http://fakeurl.com/data', 2, 10));

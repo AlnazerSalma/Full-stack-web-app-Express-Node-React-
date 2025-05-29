@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarterPage Component Data Fetching States renders slider with fetched data 1`] = `
+<div>
+  <section
+    class="starter-section"
+  >
+    <div
+      class="starter-left"
+    >
+      <h1
+        class="starter-heading"
+      >
+        Hi There!
+         
+        <span
+          aria-labelledby="wave"
+          class="wave"
+          role="img"
+        >
+          👋🏻
+        </span>
+      </h1>
+      <h2
+        class="starter-subheading"
+      >
+        I'M a designer working 
+with startups globally.
+Currently steering the 
+ship at 
+        <strong
+          class="main-name hover-link"
+        >
+          Haptic.
+        </strong>
+      </h2>
+      <div>
+        <div>
+          Slide 1
+        </div>
+        <div>
+          Slide 2
+        </div>
+      </div>
+    </div>
+    <div
+      class="starter-icon"
+    >
+      <span
+        aria-labelledby="wave"
+        class="wave"
+        role="img"
+      >
+        ⌛
+      </span>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`StarterPage Component Data Fetching States renders without crashing when data is empty and no loading or error 1`] = `
+<div>
+  <section
+    class="starter-section"
+  >
+    <div
+      class="starter-left"
+    >
+      <h1
+        class="starter-heading"
+      >
+        Hi There!
+         
+        <span
+          aria-labelledby="wave"
+          class="wave"
+          role="img"
+        >
+          👋🏻
+        </span>
+      </h1>
+      <h2
+        class="starter-subheading"
+      >
+        I'M a designer working 
+with startups globally.
+Currently steering the 
+ship at 
+        <strong
+          class="main-name hover-link"
+        >
+          Haptic.
+        </strong>
+      </h2>
+      <div />
+    </div>
+    <div
+      class="starter-icon"
+    >
+      <span
+        aria-labelledby="wave"
+        class="wave"
+        role="img"
+      >
+        ⌛
+      </span>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`StarterPage Component Data Fetching States shows error message when fetch fails 1`] = `
+<div>
+  <section
+    class="starter-section"
+  >
+    <div
+      class="starter-left"
+    >
+      <h1
+        class="starter-heading"
+      >
+        Hi There!
+         
+        <span
+          aria-labelledby="wave"
+          class="wave"
+          role="img"
+        >
+          👋🏻
+        </span>
+      </h1>
+      <h2
+        class="starter-subheading"
+      >
+        I'M a designer working 
+with startups globally.
+Currently steering the 
+ship at 
+        <strong
+          class="main-name hover-link"
+        >
+          Haptic.
+        </strong>
+      </h2>
+      <p
+        class="error-message"
+      >
+        Failed to fetch data. Please try again later.
+      </p>
+    </div>
+    <div
+      class="starter-icon"
+    >
+      <span
+        aria-labelledby="wave"
+        class="wave"
+        role="img"
+      >
+        ⌛
+      </span>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`StarterPage Component Data Fetching States shows loading message when fetching data 1`] = `
+<div>
+  <section
+    class="starter-section"
+  >
+    <div
+      class="starter-left"
+    >
+      <h1
+        class="starter-heading"
+      >
+        Hi There!
+         
+        <span
+          aria-labelledby="wave"
+          class="wave"
+          role="img"
+        >
+          👋🏻
+        </span>
+      </h1>
+      <h2
+        class="starter-subheading"
+      >
+        I'M a designer working 
+with startups globally.
+Currently steering the 
+ship at 
+        <strong
+          class="main-name hover-link"
+        >
+          Haptic.
+        </strong>
+      </h2>
+      <p
+        class="loading-message"
+      >
+        Loading...
+      </p>
+    </div>
+    <div
+      class="starter-icon"
+    >
+      <span
+        aria-labelledby="wave"
+        class="wave"
+        role="img"
+      >
+        ⌛
+      </span>
+    </div>
+  </section>
+</div>
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CareerPage renders correctly and shows the right panel when a role is selected (snapshot test) 1`] = `
+<DocumentFragment>
+  <div
+    class="careers-section container-fluid"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="text-start col"
+        >
+          <h1
+            class="careers-title"
+          >
+            Working at Haptic
+          </h1>
+          <h1
+            class="careers-subtitle"
+          >
+            Great work starts with 
+            <br />
+             great people — 
+            <strong
+              class="purple"
+            >
+              join us.
+            </strong>
+          </h1>
+          <h1
+            class="careers-open-roles"
+          >
+            ⚪ Open Roles
+          </h1>
+          <div
+            data-testid="role"
+          >
+            Software Engineer
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="right-slide-panel"
+    >
+      Right Slide Panel
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -37,7 +37,7 @@ const icons = [
 
 const Techstack = () => {
     return (
-        <div className="gallery">
+        <div className="gallery" data-testid="gallery">
             {icons.map((item, index) => (
                 <div
                     key={index}
@@ -50,5 +50,4 @@ const Techstack = () => {
         </div>
     );
 };
-
 export default Techstack;

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarterPageSlider matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slider-wrapper"
+  >
+    <div
+      class="slider-track"
+    >
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h2>
+            Item One
+          </h2>
+          <p>
+            Description One
+          </p>
+        </div>
+      </div>
+      <div
+        class="slider-item"
+      >
+        <div
+          class="slider-content"
+        >
+          <h2>
+            Item Two
+          </h2>
+          <p>
+            Description Two
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

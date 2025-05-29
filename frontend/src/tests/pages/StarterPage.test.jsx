@@ -1,12 +1,12 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import StarterPage from "../pages/StarterPage";
-import useFetch from "../utils/useFetch";
+import StarterPage from "../../pages/StarterPage";
+import useFetch from "../../utils/useFetch";
 
 // Mock hooks and components
-jest.mock("../utils/useFetch");
-jest.mock("../components/animated_slider/StarterPageSlider", () => {
+jest.mock("../../utils/useFetch");
+jest.mock("../../components/animated_slider/StarterPageSlider", () => {
   return function DummySlider({ items }) {
     return (
       <div>

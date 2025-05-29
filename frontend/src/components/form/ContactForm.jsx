@@ -2,47 +2,46 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./ContactForm.css";
 import useForm from "../../hooks/useForm";
-const ContactForm = () => {
-  const {
-    initialValues,
-    validationSchema,
-    onSubmit,
-    isLoading,
-    error,
-  } = useForm("http://localhost:5000/api/contact");
+
+const ContactForm = ({ onSubmit: customSubmit }) => {
+  const { initialValues, validationSchema, onSubmit, isLoading, error } =
+    useForm("http://localhost:5000/api/contact");
+
+  const handleSubmit = customSubmit || onSubmit;
+
   return (
     <div className="form-box">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form>
-            <label>
+            <label htmlFor="user_name">
               Name <span className="required">*</span>
             </label>
-            <Field type="text" name="user_name" />
+            <Field id="user_name" type="text" name="user_name" />
             <ErrorMessage
               name="user_name"
               component="div"
               className="error-message"
             />
 
-            <label>
+            <label htmlFor="user_email">
               Email <span className="required">*</span>
             </label>
-            <Field type="email" name="user_email" />
+            <Field id="user_email" type="email" name="user_email" />
             <ErrorMessage
               name="user_email"
               component="div"
               className="error-message"
             />
 
-            <label>
+            <label htmlFor="message">
               Message <span className="required">*</span>
             </label>
-            <Field as="textarea" name="message" />
+            <Field id="message" as="textarea" name="message" />
             <ErrorMessage
               name="message"
               component="div"

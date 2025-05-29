@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import PricingCards from "../components/card/pricing/PricingCards";
-import useFetch from "../utils/useFetch"; // Adjust path if different
+import useFetch from "../utils/useFetch";
 
 function PricePage() {
   const { data: pricingPlans, loading, error } = useFetch("http://localhost:5000/api/pricing");
