@@ -37,6 +37,12 @@ const useFetch = (url, maxRetries = 3, retryDelay = 1000) => {
 
     return () => {
       isCancelled = true;
+      //after navigate to another page this code will remove the data from the memory
+      // Clear data, error, and loading state when unmounting
+      // setData([]);
+      // setError(null);
+      // setLoading(null);
+      // console.log("Cleanup: data cleared");
     };
   }, [url, maxRetries, retryDelay]);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import ProjectCard from "../components/card/pricing/PricingCards";
+import PricingCards from "../components/card/pricing/PricingCards";
 import useFetch from "../utils/useFetch"; // Adjust path if different
 
 function PricePage() {
@@ -21,7 +21,7 @@ function PricePage() {
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
             {pricingPlans.map((plan, index) => (
               <Col xs={12} md={6} lg={4} className="project-card" key={index}>
-                <ProjectCard {...plan} />
+                <PricingCards {...plan} />
               </Col>
             ))}
           </Row>

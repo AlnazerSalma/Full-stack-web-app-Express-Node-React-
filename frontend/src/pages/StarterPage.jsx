@@ -1,3 +1,4 @@
+import React from 'react';
 import AnimatedSlider from "../components/animated_slider/StarterPageSlider";
 import useFetch from "../utils/useFetch";
 import "../style/Starter.css";
