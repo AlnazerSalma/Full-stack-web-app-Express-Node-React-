@@ -2,10 +2,8 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import HomePage from '../../pages/HomePage';
 
-// Mocking the lazy-loaded Home2 component
 jest.mock('../../components/Home/Home2', () => () => <div data-testid="home2">Home2 Loaded</div>);
 
-// Mocking child components used inside HomePage
 jest.mock('../../components/Home/Type', () => () => <div data-testid="type">Typing Animation</div>);
 jest.mock('../../components/Home/hiring_right_side/HiringRightSide', () => () => <div data-testid="hero-right">Hero Right Section</div>);
 

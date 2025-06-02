@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import useSliderAnimation from "../../hooks/useSliderAnimation";
 import "./AnimatedSlider.css";

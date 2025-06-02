@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 
 jest.mock("../../utils/useFetch");
 
-// mock data for pricing plans
+
 const mockPricingData = [
   {
     title: "Pro",

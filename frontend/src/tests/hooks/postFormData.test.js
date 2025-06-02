@@ -2,7 +2,6 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import usePostFormData from '../../utils/usePostFormData';
 
-// Mock axios module
 jest.mock('axios');
 beforeAll(() => {
   jest.spyOn(console, 'error').mockImplementation(() => {});

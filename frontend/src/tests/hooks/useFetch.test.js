@@ -2,7 +2,6 @@ import { renderHook, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import useFetch from '../../utils/useFetch';
 
-// Mock axios module
 jest.mock('axios');
 
 describe('useFetch hook', () => {
