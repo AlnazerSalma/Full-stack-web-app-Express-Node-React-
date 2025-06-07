@@ -59,5 +59,4 @@ it('apply button sets correct mailto link to window.location.href', () => {
   });
 });
 
-
 });

@@ -2,16 +2,18 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import StarterPage from "../../pages/StarterPage";
-import useFetch from "../../utils/useFetch";
+import { mockUseFetch } from "../__test_utils__/mockHooks"; 
+import mockStartPageSlide from "../__mocks_data__/mockStartPageSlide";
 
-
-jest.mock("../../utils/useFetch");
 jest.mock("../../components/animated_slider/StarterPageSlider", () => {
   return function DummySlider({ items }) {
     return (
-      <div>
-        {items.map((item) => (
-          <div key={item.id}>{item.title}</div>
+      <div data-testid="mock-slider">
+        {items.map(({name, desc }, index) => (
+          <div key={index}>
+            <h2>{name}</h2>
+            <p>{desc}</p>
+          </div>
         ))}
       </div>
     );
@@ -27,10 +29,8 @@ describe("StarterPage Component", () => {
 
   describe("Data Fetching States", () => {
     it("shows loading message when fetching data", () => {
-      useFetch.mockReturnValue({
-        data: [],
+      mockUseFetch({
         loading: "Loading...",
-        error: null,
       });
 
       const { container } = render(<StarterPage onStart={onStartMock} />);
@@ -41,9 +41,7 @@ describe("StarterPage Component", () => {
     });
 
     it("shows error message when fetch fails", () => {
-      useFetch.mockReturnValue({
-        data: [],
-        loading: null,
+      mockUseFetch({
         error: "Failed to fetch data. Please try again later.",
       });
 
@@ -57,32 +55,27 @@ describe("StarterPage Component", () => {
     });
 
     it("renders slider with fetched data", () => {
-      useFetch.mockReturnValue({
-        data: [
-          { id: 1, title: "Slide 1" },
-          { id: 2, title: "Slide 2" },
-        ],
-        loading: null,
-        error: null,
-      });
+     mockUseFetch({ data: mockStartPageSlide });
 
       const { container } = render(<StarterPage onStart={onStartMock} />);
-      expect(screen.getByText("Slide 1")).toBeInTheDocument();
-      expect(screen.getByText("Slide 2")).toBeInTheDocument();
+      mockStartPageSlide.forEach(({ name, desc }) => {
+        expect(screen.getByText(name)).toBeInTheDocument();
+        expect(screen.getByText(desc)).toBeInTheDocument();
+
+      });
+      expect(screen.getByTestId("mock-slider")).toBeInTheDocument();
 
       // snapshot
-      expect(container).toMatchSnapshot();
+     expect(container).toMatchSnapshot();
     });
 
     it("renders without crashing when data is empty and no loading or error", () => {
-      useFetch.mockReturnValue({
+      mockUseFetch({
         data: [],
-        loading: null,
-        error: null,
       });
 
       const { container } = render(<StarterPage onStart={onStartMock} />);
-      expect(container).toBeInTheDocument(); // Nothing crashes or fails
+      expect(container).toBeInTheDocument();
       expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
       expect(
         screen.queryByText("Failed to fetch data. Please try again later.")
@@ -95,10 +88,8 @@ describe("StarterPage Component", () => {
 
   describe("Button Interactions", () => {
     it('calls onStart when "Haptic." button is clicked', async () => {
-      useFetch.mockReturnValue({
+      mockUseFetch({
         data: [],
-        loading: null,
-        error: null,
       });
 
       render(<StarterPage onStart={onStartMock} />);

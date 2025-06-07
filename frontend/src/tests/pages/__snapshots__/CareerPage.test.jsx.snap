@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CareerPage renders correctly and shows the right panel when a role is selected (snapshot test) 1`] = `
+exports[`CareerPage matches snapshot when role is selected and panel is open 1`] = `
 <DocumentFragment>
   <div
     class="careers-section container-fluid"
@@ -39,7 +39,7 @@ exports[`CareerPage renders correctly and shows the right panel when a role is s
           <div
             data-testid="role"
           >
-            Software Engineer
+            UI/UX Designer
           </div>
         </div>
       </div>

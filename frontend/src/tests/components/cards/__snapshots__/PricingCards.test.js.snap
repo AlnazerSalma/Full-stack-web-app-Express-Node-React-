@@ -109,10 +109,10 @@ exports[`PricingCards renders correctly with full props including demoLink 1`] =
           class="card-column"
         >
           <p>
-            Priority Support
+            Feature 1
           </p>
           <p>
-            Unlimited Projects
+            Feature 2
           </p>
         </div>
       </div>
@@ -123,10 +123,10 @@ exports[`PricingCards renders correctly with full props including demoLink 1`] =
           class="card-column"
         >
           <p>
-            Advanced Analytics
+            Feature 3
           </p>
           <p>
-            Team Access
+            Feature 4
           </p>
         </div>
       </div>
@@ -197,10 +197,10 @@ exports[`PricingCards renders correctly without demoLink (Book a call hidden) 1`
           class="card-column"
         >
           <p>
-            Priority Support
+            Feature 1
           </p>
           <p>
-            Unlimited Projects
+            Feature 2
           </p>
         </div>
       </div>
@@ -211,10 +211,10 @@ exports[`PricingCards renders correctly without demoLink (Book a call hidden) 1`
           class="card-column"
         >
           <p>
-            Advanced Analytics
+            Feature 3
           </p>
           <p>
-            Team Access
+            Feature 4
           </p>
         </div>
       </div>

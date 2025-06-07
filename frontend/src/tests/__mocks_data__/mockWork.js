@@ -9,6 +9,7 @@ const mockWork = {
     { src: 'https://example.com/video.mp4', type: 'video' },
     { src: 'https://example.com/image.jpg', type: 'image' },
   ],
+  
 };
 
 export default mockWork;

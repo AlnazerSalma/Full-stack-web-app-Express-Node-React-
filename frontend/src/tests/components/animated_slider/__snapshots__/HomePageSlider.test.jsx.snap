@@ -15,24 +15,10 @@ exports[`HomePageSlider renders WorksSliderPanel when selectedItem exists 1`] = 
           class="slider-content"
         >
           <h3>
-            Work One
+            Frontend Developer
           </h3>
           <p>
-            Description One
-          </p>
-        </div>
-      </div>
-      <div
-        class="slider-item"
-      >
-        <div
-          class="slider-content"
-        >
-          <h3>
-            Work Two
-          </h3>
-          <p>
-            Description Two
+            Responsible for building UI components.
           </p>
         </div>
       </div>
@@ -82,24 +68,10 @@ exports[`HomePageSlider renders slider items and mediaRenderer called correctly 
           class="slider-content"
         >
           <h3>
-            Work One
+            Frontend Developer
           </h3>
           <p>
-            Description One
-          </p>
-        </div>
-      </div>
-      <div
-        class="slider-item"
-      >
-        <div
-          class="slider-content"
-        >
-          <h3>
-            Work Two
-          </h3>
-          <p>
-            Description Two
+            Responsible for building UI components.
           </p>
         </div>
       </div>

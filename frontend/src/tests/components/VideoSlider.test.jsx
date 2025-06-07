@@ -1,54 +1,32 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import VideoSlider from '../../components/Home/VideoSlider'; // adjust path as needed
-import useFetch from '../../utils/useFetch';
-
-jest.mock('../../utils/useFetch');
-
+import { mockUseFetch } from "../__test_utils__/mockHooks";
+import mockVideos from "../__mocks_data__/mockVideos";
 
 jest.mock('../../utils/youTubeEmbed', () => 
 () => <div data-testid="youtube-embed">YouTube Video</div>);
+
 describe('VideoSlider Component', () => {
   it('displays loading state', () => {
-    useFetch.mockReturnValue({
-      data: [],
+    mockUseFetch({
       loading: 'Loading...',
-      error: null,
     });
-
     render(<VideoSlider />);
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 
   it('displays error state', () => {
-    useFetch.mockReturnValue({
-      data: [],
-      loading: false,
+    mockUseFetch({
       error: 'Failed to fetch',
     });
-
     render(<VideoSlider />);
     expect(screen.getByText(/failed to load videos/i)).toBeInTheDocument();
   });
 
   it('renders video data correctly', () => {
-    const mockVideos = [
-      {
-        icon: 'https://example.com/avatar1.jpg',
-        name: 'Startup A',
-        video: 'https://youtube.com/embed/test1',
-      },
-      {
-        icon: 'https://example.com/avatar2.jpg',
-        name: 'Startup B',
-        video: 'https://youtube.com/embed/test2',
-      },
-    ];
-
-    useFetch.mockReturnValue({
+    mockUseFetch({
       data: mockVideos,
-      loading: false,
-      error: null,
     });
 
     render(<VideoSlider />);

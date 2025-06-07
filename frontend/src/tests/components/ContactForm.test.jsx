@@ -35,7 +35,7 @@ const setupUseFormMock = (options = {}) => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    setupUseFormMock(); // default mock setup
+    setupUseFormMock();
   });
 
   it("renders all required form fields", () => {

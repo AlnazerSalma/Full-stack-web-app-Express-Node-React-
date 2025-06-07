@@ -34,12 +34,24 @@ ship at
           Haptic.
         </strong>
       </h2>
-      <div>
+      <div
+        data-testid="mock-slider"
+      >
         <div>
-          Slide 1
+          <h2>
+            Slide 1
+          </h2>
+          <p>
+            Description 1
+          </p>
         </div>
         <div>
-          Slide 2
+          <h2>
+            Slide 2
+          </h2>
+          <p>
+            Description 2
+          </p>
         </div>
       </div>
     </div>
@@ -92,7 +104,9 @@ ship at
           Haptic.
         </strong>
       </h2>
-      <div />
+      <div
+        data-testid="mock-slider"
+      />
     </div>
     <div
       class="starter-icon"

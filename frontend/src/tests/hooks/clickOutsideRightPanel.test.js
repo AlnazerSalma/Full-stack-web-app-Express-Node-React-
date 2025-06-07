@@ -6,7 +6,6 @@ import useOnClickOutside from '../../hooks/useOnClickOutside'; // adjust path if
 const TestComponent = ({ onOutsideClick, when = true }) => {
   const ref = useRef();
   const [clickedOutside, setClickedOutside] = useState(false);
-
   useOnClickOutside(ref, () => {
     onOutsideClick();
     setClickedOutside(true);

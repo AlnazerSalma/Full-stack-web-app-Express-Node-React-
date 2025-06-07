@@ -10,18 +10,13 @@ describe('Techstack component', () => {
   });
 
   test('renders gallery container with correct class and data-testid', () => {
-    // Prefer querying by test id
     const gallery = screen.getByTestId('gallery');
     expect(gallery).toBeInTheDocument();
-
-    // Also verify it has the gallery class
     expect(gallery).toHaveClass('gallery');
   });
 
   test('renders all 14 tech icons with correct titles', () => {
     const gallery = screen.getByTestId('gallery');
-
-    // Query all avatars inside the gallery container
     const avatars = gallery.querySelectorAll('.avatar');
     expect(avatars.length).toBe(14);
 

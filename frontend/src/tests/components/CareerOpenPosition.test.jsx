@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Roles from "../../components/career/Roles";
+import CareerOpenPosition from "../../components/career/CareerOpenPosition";
 
-describe("Roles component", () => {
+describe("CareerOpenPosition component", () => {
   it("renders the role information", () => {
     render(
-      <Roles
+      <CareerOpenPosition
         title="Senior Designer"
         location="UK/Europe"
         type="Full-time"
@@ -22,7 +22,7 @@ describe("Roles component", () => {
     const handleClick = jest.fn();
 
     render(
-      <Roles
+      <CareerOpenPosition
         title="Senior Designer"
         location="UK/Europe"
         type="Full-time"

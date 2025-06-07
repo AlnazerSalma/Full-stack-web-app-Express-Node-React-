@@ -11,7 +11,7 @@ exports[`WorkCard Component matches snapshot when works are loaded 1`] = `
       <div
         class="workcard-title"
       >
-        Work 1
+        Frontend Developer
       </div>
       <div
         class="workcard-image-wrapper"
@@ -19,35 +19,11 @@ exports[`WorkCard Component matches snapshot when works are loaded 1`] = `
       <div
         class="workcard-desc"
       >
-        Type 1
+        Web, UI, Frontend
       </div>
       <div
         class="workcard-year"
-      >
-        2020
-      </div>
-    </div>
-    <div
-      class="workcard-row"
-    >
-      <div
-        class="workcard-title"
-      >
-        Work 2
-      </div>
-      <div
-        class="workcard-image-wrapper"
       />
-      <div
-        class="workcard-desc"
-      >
-        Type 2
-      </div>
-      <div
-        class="workcard-year"
-      >
-        2021
-      </div>
     </div>
   </div>
 </DocumentFragment>

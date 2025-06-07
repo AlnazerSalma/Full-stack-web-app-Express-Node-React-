@@ -1,26 +1,15 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import HomePageSlider from "../../../components/animated_slider/HomePageSlider";
-import mediaRenderer from "../../../utils/mediaRenderer";
-import useFetch from "../../../utils/useFetch";
-import useRightSlidePanel from "../../../hooks/useRightSlidePanel";
+import mockMediaRenderer from "../../__test_utils__/mockMediaRenderer";
+import { mockUseFetch, mockUsePanel } from "../../__test_utils__/mockHooks";
+import mockWork from "../../__mocks_data__/mockWork";
 
-jest.mock("../../../utils/mediaRenderer", () =>
-  jest.fn(({ src, type, alt, className }) => (
-    <div
-      data-testid="media-renderer"
-      data-src={src}
-      data-type={type}
-      data-alt={alt}
-      className={className}
-    >
-      Mocked Media
-    </div>
-  ))
-);
+jest.mock("../../../utils/mediaRenderer", () => ({
+  __esModule: true,
+  default: require("../../__test_utils__/mockMediaRenderer").default,
+}));
 
-jest.mock("../../../utils/useFetch");
-jest.mock("../../../hooks/useRightSlidePanel");
 jest.mock("../../../hooks/useSliderAnimation");
 
 jest.mock(
@@ -33,35 +22,16 @@ jest.mock(
 );
 
 describe("HomePageSlider", () => {
-  const mockWorks = [
-    {
-      title: "Work One",
-      desc: "Description One",
-      media: [{ src: "media1.jpg", type: "image" }],
-    },
-    {
-      name: "Work Two",
-      desc: "Description Two",
-      media: [{ src: "media2.mp4", type: "video" }],
-    },
-  ];
-
+  const mockWorks = [mockWork];
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("renders loading state and matches snapshot", () => {
-    useFetch.mockReturnValue({
-      data: [],
+    mockUseFetch({
       loading: "Loading works...",
-      error: null,
     });
-    useRightSlidePanel.mockReturnValue({
-      isOpen: false,
-      selectedItem: null,
-      openPanel: jest.fn(),
-      closePanel: jest.fn(),
-    });
+    mockUsePanel({});
 
    const { container } = render(<HomePageSlider />);
 
@@ -71,17 +41,10 @@ describe("HomePageSlider", () => {
   });
 
   it("renders error message and matches snapshot", () => {
-    useFetch.mockReturnValue({
-      data: [],
-      loading: false,
+   mockUseFetch({
       error: true,
     });
-    useRightSlidePanel.mockReturnValue({
-      isOpen: false,
-      selectedItem: null,
-      openPanel: jest.fn(),
-      closePanel: jest.fn(),
-    });
+    mockUsePanel({});
 
       const { container } = render(<HomePageSlider />);
 
@@ -91,55 +54,45 @@ describe("HomePageSlider", () => {
 
   });
 
- it("renders slider items and mediaRenderer called correctly and matches snapshot", () => {
-  useFetch.mockReturnValue({
-    data: mockWorks,
-    loading: false,
-    error: null,
-  });
-  const openPanelMock = jest.fn();
-  useRightSlidePanel.mockReturnValue({
-    isOpen: false,
-    selectedItem: null,
-    openPanel: openPanelMock,
-    closePanel: jest.fn(),
-  });
+  it("renders slider items and mediaRenderer called correctly and matches snapshot", () => {
+    mockUseFetch({
+      data: mockWorks,
+    });
 
-  const { container } = render(<HomePageSlider />);
+    const openPanelMock = jest.fn();
+    mockUsePanel({ openPanel: openPanelMock });
 
-  mockWorks.forEach(({ title, name, desc }) => {
-    const text = title || name;
-    expect(screen.getByText(text)).toBeInTheDocument();
-    expect(screen.getByText(desc)).toBeInTheDocument();
-  });
+    const { container } = render(<HomePageSlider />);
 
-  expect(mediaRenderer).toHaveBeenCalledTimes(mockWorks.length);
-  mockWorks.forEach((work, index) => {
-    expect(mediaRenderer.mock.calls[index][0]).toEqual(
-      expect.objectContaining({
-        src: work.media?.[0]?.src,
-        type: work.media?.[0]?.type,
-        alt: work.title || work.name,
-        className: "media-class-name",
-      })
-    );
+    mockWorks.forEach(({ title, name, desc }) => {
+      const text = title || name;
+      expect(screen.getByText(text)).toBeInTheDocument();
+      expect(screen.getByText(desc)).toBeInTheDocument();
+    });
+
+    expect(mockMediaRenderer).toHaveBeenCalledTimes(mockWorks.length);
+    mockWorks.forEach((work, index) => {
+      expect(mockMediaRenderer.mock.calls[index][0]).toEqual(
+        expect.objectContaining({
+          src: work.media?.[0]?.src,
+          type: work.media?.[0]?.type,
+          alt: work.title || work.name,
+          className: "media-class-name",
+        })
+      );
+    });
+
+    expect(container).toMatchSnapshot();
   });
 
-  expect(container).toMatchSnapshot();
-});
 
   it("calls openPanel when slider item clicked", () => {
-    useFetch.mockReturnValue({
+    mockUseFetch({
       data: mockWorks,
-      loading: false,
-      error: null,
     });
     const openPanelMock = jest.fn();
-    useRightSlidePanel.mockReturnValue({
-      isOpen: false,
-      selectedItem: null,
+    mockUsePanel({
       openPanel: openPanelMock,
-      closePanel: jest.fn(),
     });
 
     render(<HomePageSlider />);
@@ -155,24 +108,19 @@ describe("HomePageSlider", () => {
   });
 
  it("renders WorksSliderPanel when selectedItem exists", async () => {
-  useFetch.mockReturnValue({
+  mockUseFetch({
     data: mockWorks,
-    loading: false,
-    error: null,
   });
 
-  useRightSlidePanel.mockReturnValue({
+  mockUsePanel({
     isOpen: true,
     selectedItem: mockWorks[0],
-    openPanel: jest.fn(),
-    closePanel: jest.fn(),
   });
 
   const { container } = render(<HomePageSlider />);
 
   // eslint-disable-next-line testing-library/prefer-presence-queries
   expect(screen.queryByText("Loading details...")).toBeInTheDocument();
-
   await waitFor(() => {
     expect(screen.getByTestId("works-slider-panel")).toBeInTheDocument();
     // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions

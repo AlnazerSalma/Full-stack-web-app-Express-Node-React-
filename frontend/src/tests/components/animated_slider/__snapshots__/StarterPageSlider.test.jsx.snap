@@ -15,10 +15,10 @@ exports[`StarterPageSlider matches snapshot 1`] = `
           class="slider-content"
         >
           <h2>
-            Item One
+            Slide 1
           </h2>
           <p>
-            Description One
+            Description 1
           </p>
         </div>
       </div>
@@ -29,10 +29,10 @@ exports[`StarterPageSlider matches snapshot 1`] = `
           class="slider-content"
         >
           <h2>
-            Item Two
+            Slide 2
           </h2>
           <p>
-            Description Two
+            Description 2
           </p>
         </div>
       </div>
