@@ -32,9 +32,9 @@ exports[`CareerPage renders correctly and shows the right panel when a role is s
             </strong>
           </h1>
           <h1
-            class="careers-open-roles"
+            class="careers-open-positions"
           >
-            ⚪ Open Roles
+            ⚪ Open position
           </h1>
           <div
             data-testid="role"

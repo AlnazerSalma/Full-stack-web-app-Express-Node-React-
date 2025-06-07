@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Type from "../components/Home/Type";
+import Type from "../components/Home/TypeWriter";
 import HeroRightSection from "../components/Home/hiring_right_side/HiringRightSide";
 
 const Home2 = lazy(() => {

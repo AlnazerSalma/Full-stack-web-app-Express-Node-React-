@@ -4,7 +4,7 @@ import HomePage from '../../pages/HomePage';
 
 jest.mock('../../components/Home/Home2', () => () => <div data-testid="home2">Home2 Loaded</div>);
 
-jest.mock('../../components/Home/Type', () => () => <div data-testid="type">Typing Animation</div>);
+jest.mock('../../components/Home/TypeWriter', () => () => <div data-testid="type">Typing Animation</div>);
 jest.mock('../../components/Home/hiring_right_side/HiringRightSide', () => () => <div data-testid="hero-right">Hero Right Section</div>);
 
 describe('HomePage', () => {

@@ -1,14 +1,15 @@
 import React, { Suspense } from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import CareerPage from "../../pages/CareerPage"; // Adjust path if needed
+import CareerPage from "../../pages/CareerPage";
 import * as fetchHook from "../../utils/useFetch";
 import * as panelHook from "../../hooks/useRightSlidePanel";
+import mockOpenposition from "../__mocks_data__/mockOpenposition";
 
 jest.mock("../../components/right_slider_panel/CareerRightSlidePanel.jsx", () => () => (
   <div data-testid="right-slide-panel">Right Slide Panel</div>
 ));
 
-jest.mock("../../components/career/Roles", () => ({ title, onClick }) => (
+jest.mock("../../components/career/CareerOpenPosition", () => ({ title, onClick }) => (
   <div data-testid="role" onClick={onClick}>
     {title}
   </div>
@@ -56,15 +57,12 @@ describe("CareerPage", () => {
     expect(screen.getByText(/Failed to fetch/i)).toBeInTheDocument();
   });
 
-  it("renders job roles and opens the right panel when clicked", async () => {
-    const mockData = [
-      { title: "Software Engineer", location: "Remote", type: "Full-time" },
-    ];
-
+  it("renders job roles and opens the right panel when clicked",() => {
+ 
     const openPanel = jest.fn();
 
     jest.spyOn(fetchHook, "default").mockReturnValue({
-      data: mockData,
+      data: mockOpenposition,
       loading: false,
       error: null,
     });
@@ -82,21 +80,20 @@ describe("CareerPage", () => {
     expect(role).toBeInTheDocument();
 
     fireEvent.click(role);
-    expect(openPanel).toHaveBeenCalledWith(mockData[0]);
+    expect(openPanel).toHaveBeenCalledWith(mockOpenposition[0]);
   });
 
 it("shows the right panel when a role is selected", async () => { 
-  const role = { title: "Software Engineer", location: "Remote", type: "Full-time" };
 
   jest.spyOn(fetchHook, "default").mockReturnValue({
-    data: [role],
+    data: mockOpenposition,
     loading: false,
     error: null,
   });
 
   jest.spyOn(panelHook, "default").mockReturnValue({
     isOpen: true,
-    selectedItem: role,
+    selectedItem: mockOpenposition[0],
     openPanel: jest.fn(),
     closePanel: jest.fn(),
   });
@@ -112,17 +109,16 @@ it("shows the right panel when a role is selected", async () => {
   });
 });
 it("renders correctly and shows the right panel when a role is selected (snapshot test)", () => {
-  const role = { title: "Software Engineer", location: "Remote", type: "Full-time" };
 
   jest.spyOn(fetchHook, "default").mockReturnValue({
-    data: [role],
+    data: mockOpenposition,
     loading: false,
     error: null,
   });
 
   jest.spyOn(panelHook, "default").mockReturnValue({
     isOpen: true,
-    selectedItem: role,
+    selectedItem: mockOpenposition[0],
     openPanel: jest.fn(),
     closePanel: jest.fn(),
   });

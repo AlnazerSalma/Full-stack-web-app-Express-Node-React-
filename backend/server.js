@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const sliderRoutes = require('./src/routes/sliderRoutes');
+const startPageRoutes = require('./src/routes/startPageRoutes');
 const careerRoutes = require('./src/routes/careersRouter');
 const pricingRoutes = require('./src/routes/pricingRouter'); 
 const workRoutes = require('./src/routes/workRouter');
@@ -21,7 +21,7 @@ app.get('/api', (req, res) => {
 });
 
 // Routes
-app.use('/api/sliders', sliderRoutes);
+app.use('/api/startPage', startPageRoutes);
 app.use('/api/careers', careerRoutes);
 app.use('/api/pricing', pricingRoutes);
 app.use('/api/works', workRoutes);
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 
 // Root
 app.get('/', (req, res) => {
-  res.send('API is running. Available routes: /api/sliders, /api/careers, /api/pricing, /api/works, /api/homeVideos');
+  res.send('API is running. Available routes: /api/startPage, /api/careers, /api/pricing, /api/works, /api/homeVideos');
 });
 
 app.listen(PORT, () => {

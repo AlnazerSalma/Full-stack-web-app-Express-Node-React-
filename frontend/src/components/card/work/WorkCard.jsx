@@ -5,7 +5,7 @@ import useRightSlidePanel from "../../../hooks/useRightSlidePanel";
 import mediaRenderer from "../../../utils/mediaRenderer";
 
 const WorksSliderPanel = lazy(() =>
-  import("../../right_slider_panel/WorksCareerRightSlidePanel")
+  import("../../right_slider_panel/WorksRightSlidePanel")
 );
 
 function WorkCard() {

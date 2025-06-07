@@ -16,7 +16,7 @@ jest.mock("../../../utils/mediaRenderer", () => ({
   )),
 }));
 
-jest.mock("../../../components/right_slider_panel/WorksCareerRightSlidePanel", () => (props) => (
+jest.mock("../../../components/right_slider_panel/WorksRightSlidePanel", () => (props) => (
   <div data-testid="works-slider-panel">
     WorksSliderPanel is open: {props.isOpen ? "Yes" : "No"}
     <button onClick={props.onClose}>Close</button>

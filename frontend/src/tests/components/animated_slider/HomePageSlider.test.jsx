@@ -24,7 +24,7 @@ jest.mock("../../../hooks/useRightSlidePanel");
 jest.mock("../../../hooks/useSliderAnimation");
 
 jest.mock(
-  "../../../components/right_slider_panel/WorksCareerRightSlidePanel",
+  "../../../components/right_slider_panel/WorksRightSlidePanel",
   () => ({ isOpen, selectedItem, openPanel, closePanel, ...rest }) => (
     <div data-testid="works-slider-panel" {...rest}>
       Mocked WorksSliderPanel

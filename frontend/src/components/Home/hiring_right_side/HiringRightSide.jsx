@@ -6,7 +6,7 @@ import Vector2 from "../../../Assets/home/Vector2.png";
 import boy from "../../../Assets/home/boy.png";
 
 import hiring from "../../../Assets/home/hiring.png";
-import FloatinDiv from "../../floating_div/FloatingDiv";
+import FloatinDiv from "../floating_div/FloatingDiv";
 import "./HiringRightSide.css"
 
 const HeroRightSection = () => {

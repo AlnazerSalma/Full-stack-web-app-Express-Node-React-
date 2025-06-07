@@ -8,7 +8,7 @@ function StarterPage({ onStart }) {
     data: sliderItems,
     loading,
     error,
-  } = useFetch("http://localhost:5000/api/sliders");
+  } = useFetch("http://localhost:5000/api/startPage");
   return (
     <section className="starter-section">
       <div className="starter-left">

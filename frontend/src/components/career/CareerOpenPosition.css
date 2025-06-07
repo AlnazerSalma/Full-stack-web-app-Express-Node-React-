@@ -1,36 +1,36 @@
-.roles {
+.open_position {
     margin-bottom: 1.5rem;
   }
-  .roles-title {
+  .open_position-title {
     transition: color 0.2s ease;
   }
   
-  .roles:hover .roles-title {
+  .open_position:hover .open_position-title {
     color: #0093af; 
   }
   
-  .roles-row {
+  .open_position-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .roles-title {
+  .open_position-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: white;
     margin: 0;
   }
   
-  .roles-meta {
+  .open_position-meta {
     font-size: 1rem;
     color: #ccc;
     margin: 0;
     white-space: nowrap;
   }
   
-  .roles-location,
-  .roles-type {
+  .open_position-location,
+  .open_position-type {
     font-style: italic;
   }
   

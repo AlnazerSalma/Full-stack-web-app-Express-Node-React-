@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getSliders } = require('../controllers/sliderController');
+const { getSliders } = require('../controllers/startPageController');
 
 router.get('/', getSliders);
 

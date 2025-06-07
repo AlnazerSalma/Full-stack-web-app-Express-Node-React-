@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Roles from "../components/career/Roles";
+import CareerOpenPosition from "../components/career/CareerOpenPosition";
 import useFetch from "../utils/useFetch";
 import useRightSlidePanel from "../hooks/useRightSlidePanel";
 import "../style/Careers.css";
@@ -37,14 +37,14 @@ function CareerPage() {
               {error && <p className="error-message">{error}</p>}
             {!loading && !error && (
               <>
-                <h1 className="careers-open-roles">⚪ Open Roles</h1>
-                {careerData.map((role, idx) => (
-                  <Roles
+                <h1 className="careers-open-positions">⚪ Open position</h1>
+                {careerData.map((position, idx) => (
+                  <CareerOpenPosition
                     key={idx}
-                    title={role.title}
-                    location={role.location}
-                    type={role.type}
-                    onClick={() => openPanel(role)}
+                    title={position.title}
+                    location={position.location}
+                    type={position.type}
+                    onClick={() => openPanel(position)}
                   />
                 ))}
               </>
@@ -58,7 +58,7 @@ function CareerPage() {
         <CareerRightSlidePanel
            isOpen={isOpen}
            onClose={closePanel}
-         role={selectedItem}
+           position={selectedItem}
         />
         </Suspense>
       )}
