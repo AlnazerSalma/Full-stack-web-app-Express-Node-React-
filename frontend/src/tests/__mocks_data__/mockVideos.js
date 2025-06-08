@@ -1,4 +1,4 @@
-export const mockVideos =
+export const MockVideos =
    [
       {
         name: 'Startup A',
@@ -12,4 +12,4 @@ export const mockVideos =
       },
     ];
 
-export default mockVideos;
+export default MockVideos;

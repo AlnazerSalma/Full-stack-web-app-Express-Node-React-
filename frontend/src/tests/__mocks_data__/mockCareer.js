@@ -1,4 +1,4 @@
-const mockCareer = {
+const MockCareer = {
   title: 'UI/UX Designer',
   desc: 'Design intuitive user experiences.',
   type: 'Full-Time',
@@ -12,4 +12,4 @@ const mockCareer = {
   workingTogether: 'You’ll work closely with product and dev teams.',
   application: 'Send us your portfolio and resume.',
 };
-export default mockCareer;
+export default MockCareer;

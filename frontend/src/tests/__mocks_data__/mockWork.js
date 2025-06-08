@@ -1,4 +1,4 @@
-const mockWork = {
+const MockWork = {
   image: 'https://example.com/image.png',
   title: 'Frontend Developer',
   minTitle: 'React Specialist',
@@ -12,4 +12,4 @@ const mockWork = {
   
 };
 
-export default mockWork;
+export default MockWork;

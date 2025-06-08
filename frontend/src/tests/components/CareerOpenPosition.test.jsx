@@ -1,21 +1,22 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import CareerOpenPosition from "../../components/career/CareerOpenPosition";
+import mockCareer from "../__mocks_data__/mockCareer";
 
 describe("CareerOpenPosition component", () => {
   it("renders the role information", () => {
     render(
       <CareerOpenPosition
-        title="Senior Designer"
-        location="UK/Europe"
-        type="Full-time"
+        title={mockCareer.title}
+        location={mockCareer.location}
+        type={mockCareer.type}
         onClick={() => {}}
       />
     );
 
-    expect(screen.getByText("Senior Designer")).toBeInTheDocument();
-    expect(screen.getByText("UK/Europe")).toBeInTheDocument();
-    expect(screen.getByText("Full-time")).toBeInTheDocument();
+    expect(screen.getByText(mockCareer.title)).toBeInTheDocument();
+    expect(screen.getByText(mockCareer.location)).toBeInTheDocument();
+    expect(screen.getByText(mockCareer.type)).toBeInTheDocument();
   });
 
   it("calls onClick handler when clicked", () => {
@@ -23,14 +24,14 @@ describe("CareerOpenPosition component", () => {
 
     render(
       <CareerOpenPosition
-        title="Senior Designer"
-        location="UK/Europe"
-        type="Full-time"
+        title={mockCareer.title}
+        location={mockCareer.location}
+        type={mockCareer.type}
         onClick={handleClick}
       />
     );
 
-    fireEvent.click(screen.getByText("Senior Designer"));
+    fireEvent.click(screen.getByText(mockCareer.title));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

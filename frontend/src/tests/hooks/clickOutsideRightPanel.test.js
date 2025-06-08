@@ -1,15 +1,19 @@
-/* eslint-disable testing-library/prefer-presence-queries */
 import React, { useRef, useState } from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import useOnClickOutside from '../../hooks/useOnClickOutside'; // adjust path if needed
+import { render, screen, fireEvent } from '@testing-library/react';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const TestComponent = ({ onOutsideClick, when = true }) => {
   const ref = useRef();
   const [clickedOutside, setClickedOutside] = useState(false);
-  useOnClickOutside(ref, () => {
-    onOutsideClick();
-    setClickedOutside(true);
-  }, when);
+
+  useOnClickOutside(
+    ref,
+    () => {
+      onOutsideClick();
+      setClickedOutside(true);
+    },
+    when
+  );
 
   return (
     <div>
@@ -20,40 +24,37 @@ const TestComponent = ({ onOutsideClick, when = true }) => {
   );
 };
 
-describe('clickOutsideRightPanel', () => {
-  it('calls handler when clicking outside the element', () => {
-    const onOutsideClick = jest.fn();
-    const { getByTestId, queryByTestId } = render(<TestComponent onOutsideClick={onOutsideClick} />);
+const setup = (props = {}) => {
+  const onOutsideClick = jest.fn();
+  render(<TestComponent onOutsideClick={onOutsideClick} {...props} />);
+  return { onOutsideClick };
+};
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    fireEvent.mouseDown(getByTestId('outside'));
+describe('useOnClickOutside hook', () => {
+  it('calls handler when clicking outside the element', () => {
+    const { onOutsideClick } = setup();
+
+    fireEvent.mouseDown(screen.getByTestId('outside'));
 
     expect(onOutsideClick).toHaveBeenCalledTimes(1);
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(queryByTestId('clicked-out')).toBeInTheDocument();
+    expect(screen.getByTestId('clicked-out')).toBeInTheDocument();
   });
 
   it('does not call handler when clicking inside the element', () => {
-    const onOutsideClick = jest.fn();
-    const { getByTestId, queryByTestId } = render(<TestComponent onOutsideClick={onOutsideClick} />);
+    const { onOutsideClick } = setup();
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    fireEvent.mouseDown(getByTestId('inside'));
+    fireEvent.mouseDown(screen.getByTestId('inside'));
 
     expect(onOutsideClick).not.toHaveBeenCalled();
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(queryByTestId('clicked-out')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('clicked-out')).not.toBeInTheDocument();
   });
 
   it('does not trigger handler when hook is inactive', () => {
-    const onOutsideClick = jest.fn();
-    const { getByTestId, queryByTestId } = render(<TestComponent onOutsideClick={onOutsideClick} when={false} />);
+    const { onOutsideClick } = setup({ when: false });
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    fireEvent.mouseDown(getByTestId('outside'));
+    fireEvent.mouseDown(screen.getByTestId('outside'));
 
     expect(onOutsideClick).not.toHaveBeenCalled();
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(queryByTestId('clicked-out')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('clicked-out')).not.toBeInTheDocument();
   });
 });

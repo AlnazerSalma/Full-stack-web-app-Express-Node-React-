@@ -5,40 +5,52 @@ import useFetch from '../../utils/useFetch';
 jest.mock('axios');
 
 describe('useFetch hook', () => {
+  const mockUrl = 'http://fakeurl.com/data';
+  const mockData = [{ id: 1, title: 'Test' }];
+  const errorMessage = 'Failed to fetch data. Please try again later.';
+  const expectInitialState = (result) => {
+    expect(result.current).toEqual({
+      loading: 'Loading...',
+      data: [],
+      error: null,
+    });
+  };
+  const expectErrorState = (result) => {
+    expect(result.current).toEqual({
+      loading: null,
+      data: [],
+      error: errorMessage,
+    });
+  };
+
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('fetch data successfully', async () => {
-  const mockData = [{ id: 1, title: 'Test' }];
   axios.get.mockResolvedValueOnce({ data: mockData });
 
-  const { result } = renderHook(() => useFetch('http://fakeurl.com/data'));
-
-  expect(result.current.loading).toBe('Loading...');
-  expect(result.current.data).toEqual([]);
-  expect(result.current.error).toBe(null);
-
+  const { result } = renderHook(() => useFetch(mockUrl));
+  expectInitialState(result);
   // Wait for the loading to be finished
   await waitFor(() => expect(result.current.loading).toBe(null));
-
-  expect(result.current.data).toEqual(mockData);
-  expect(result.current.error).toBe(null);
+ expect(result.current).toMatchObject({
+      loading: null,
+      data: mockData,
+      error: null,
+    });
 });
 
 it('retry fetching data up to max retries and then fail with error message', async () => {
   axios.get.mockRejectedValue(new Error('Network Error'));
+  const maxRetries = 2;
+  const retryDelay = 10;
 
-  const { result } = renderHook(() => useFetch('http://fakeurl.com/data', 2, 10));
-
-  expect(result.current.loading).toBe('Loading...');
-  expect(result.current.data).toEqual([]);
-  expect(result.current.error).toBe(null);
+  const { result } = renderHook(() => useFetch(mockUrl, maxRetries, retryDelay));
+  expectInitialState(result);;
 
   // Wait for the final failure state after retries
   await waitFor(() => expect(result.current.loading).toBe(null));
-
-  expect(result.current.data).toEqual([]);
-  expect(result.current.error).toBe('Failed to fetch data. Please try again later.');
+  expectErrorState(result);
 });
 });

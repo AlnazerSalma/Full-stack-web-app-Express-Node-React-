@@ -1,4 +1,4 @@
-const mockPricing = [
+const MockPricing = [
 {
     title: "Pro",
     description: "Pro plan description",
@@ -21,4 +21,4 @@ const mockPricing = [
   },
 ];
 
-export default mockPricing;
+export default MockPricing;

@@ -1,4 +1,4 @@
-export const mockStartPageSlide = [
+export const MockStartPageSlide = [
   {
     name: "Slide 1",
     desc: "Description 1",
@@ -13,4 +13,4 @@ export const mockStartPageSlide = [
   },
 ];
 
-export default mockStartPageSlide;
+export default MockStartPageSlide;
