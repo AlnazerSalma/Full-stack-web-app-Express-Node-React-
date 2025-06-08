@@ -4,7 +4,7 @@ const careerData = [
       title: "Senior Designer",
       location: "(UK/Europe)",
       type: "Full-time",
-      mode: "Remote",
+      mode: "One Site",
       desc: "As a Senior Designer, you’ll be a driving force in shaping our creative output and studio culture.",
       image:
         "https://www.orientsoftware.com/Themes/Content/Images/blog/2024-08-12/senior-front-end-dev.webp",

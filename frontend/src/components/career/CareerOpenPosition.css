@@ -30,7 +30,8 @@
   }
   
   .open_position-location,
-  .open_position-type {
+  .open_position-type,
+  .open_position-mode {
     font-style: italic;
   }
   

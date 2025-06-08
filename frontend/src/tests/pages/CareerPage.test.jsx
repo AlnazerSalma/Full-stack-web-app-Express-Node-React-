@@ -52,6 +52,7 @@ describe("CareerPage", () => {
       isOpen: true,
       selectedItem: {
         title: mockCareer.title,
+        mode: mockCareer.mode,
         location: mockCareer.location,
         type: mockCareer.type,
       },
@@ -71,6 +72,7 @@ describe("CareerPage", () => {
       isOpen: true,
       selectedItem: {
         title: mockCareer.title,
+        mode: mockCareer.mode,
         location: mockCareer.location,
         type: mockCareer.type,
       },

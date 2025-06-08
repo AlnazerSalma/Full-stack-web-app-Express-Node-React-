@@ -43,6 +43,7 @@ function CareerPage() {
                     key={idx}
                     title={position.title}
                     location={position.location}
+                    mode={position.mode}
                     type={position.type}
                     onClick={() => openPanel(position)}
                   />

@@ -8,6 +8,7 @@ describe("CareerOpenPosition component", () => {
     render(
       <CareerOpenPosition
         title={mockCareer.title}
+        mode={mockCareer.mode}
         location={mockCareer.location}
         type={mockCareer.type}
         onClick={() => {}}
@@ -15,6 +16,7 @@ describe("CareerOpenPosition component", () => {
     );
 
     expect(screen.getByText(mockCareer.title)).toBeInTheDocument();
+    expect(screen.getByText(mockCareer.mode)).toBeInTheDocument();
     expect(screen.getByText(mockCareer.location)).toBeInTheDocument();
     expect(screen.getByText(mockCareer.type)).toBeInTheDocument();
   });
@@ -25,6 +27,7 @@ describe("CareerOpenPosition component", () => {
     render(
       <CareerOpenPosition
         title={mockCareer.title}
+        mode={mockCareer.mode}
         location={mockCareer.location}
         type={mockCareer.type}
         onClick={handleClick}
