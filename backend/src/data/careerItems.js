@@ -2,7 +2,7 @@ const careerData = [
     {
       id: 1,
       title: "Senior Designer",
-      location: "(UK/Europe)",
+      location: "UK,Europe",
       type: "Full-time",
       mode: "One Site",
       desc: "As a Senior Designer, you’ll be a driving force in shaping our creative output and studio culture.",
@@ -49,7 +49,7 @@ const careerData = [
     {
       id: 2,
       title: "UI/UX Designer",
-      location: "Hybrid (UK/Europe)",
+      location: "Palestine",
       type: "Part-time",
       mode: "Hybrid",
       desc: "We build beautiful, performant web applications...",
