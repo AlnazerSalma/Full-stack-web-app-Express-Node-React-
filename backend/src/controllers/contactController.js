@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+const { sendNotFound, sendServerError, sendOk, sendCreated } = require("../utils/responses");
 const contactsFilePath = path.join(__dirname, "../../data/contacts.json");
 
 // CREATE contact
@@ -9,9 +10,8 @@ const createContact = (req, res) => {
 
   const { user_name, user_email, message } = req.body;
 
-  if (!user_name || !user_email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+  if (!user_name || !user_email || !message)
+    return sendNotFound(res, "All fields are required");
 
   const newContact = {
     id: Date.now(),
@@ -38,13 +38,11 @@ const createContact = (req, res) => {
       (writeErr) => {
         if (writeErr) {
           console.error("Write error:", writeErr);
-          return res.status(500).json({ error: "Could not save contact" });
+          return sendServerError(res, "Could not save contact");
         }
 
         console.log("Contact saved!");
-        return res
-          .status(201)
-          .json({ message: "Contact saved", contact: newContact });
+          return sendCreated(res, { contact: newContact }, "Contact saved");
       }
     );
   });
@@ -55,15 +53,15 @@ const getContacts = (req, res) => {
   fs.readFile(contactsFilePath, "utf8", (err, data) => {
     if (err) {
       console.error("Read error:", err);
-      return res.status(500).json({ error: "Failed to read contacts" });
+      return sendServerError(res, "Failed to read contacts");
     }
 
     try {
       const contacts = JSON.parse(data || "[]");
-      res.status(200).json(contacts);
+      return sendOk(res, { contacts });
     } catch (parseErr) {
       console.error("Parse error:", parseErr);
-      res.status(500).json({ error: "Error parsing contacts" });
+     return sendServerError(res, "Error parsing contacts");
     }
   });
 };

@@ -1,9 +1,6 @@
 const sliderItems = require('../data/startPageItems');
-
-/**Case-insensitive string match */
-const includesIgnoreCase = (source = '', target = '') =>
-  source.toLowerCase().includes(target.toLowerCase());
-
+const { includesIgnoreCase } = require('../utils/helpers');
+const { sendNotFound } = require('../utils/responses');
 /**
  * GET: All sliders
  * Route: GET /startPage
@@ -19,11 +16,7 @@ const getSliders = (req, res) => {
 const getSliderById = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const item = sliderItems.find(slider => slider.id === id);
-
-  if (!item) {
-    return res.status(404).json({ error: 'Slider not found' });
-  }
-
+  if (!item) return sendNotFound(res, "Slider not found");
   res.json(item);
 };
 
@@ -36,11 +29,7 @@ const getSliderByName = (req, res) => {
   const item = sliderItems.find(slider =>
     includesIgnoreCase(slider.name, name)
   );
-
-  if (!item) {
-    return res.status(404).json({ error: 'Slider with given name not found' });
-  }
-
+  if (!item) return sendNotFound(res, "Slider with given name not found");
   res.json(item);
 };
 
@@ -51,17 +40,14 @@ const getSliderByName = (req, res) => {
 const searchSliders = (req, res) => {
   const { name, desc } = req.query;
   let results = sliderItems;
-
   if (name) {
     results = results.filter(slider => includesIgnoreCase(slider.name, name));
   }
-
   if (desc) {
     results = results.filter(slider =>
       includesIgnoreCase(slider.desc, desc)
     );
   }
-
   res.json(results);
 };
 

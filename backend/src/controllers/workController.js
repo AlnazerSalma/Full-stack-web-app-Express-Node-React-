@@ -1,8 +1,6 @@
 const workItems = require('../data/workItems');
-
-/** Case-insensitive match */
-const includesIgnoreCase = (source = '', target = '') =>
-  source.toLowerCase().includes(target.toLowerCase());
+const { includesIgnoreCase } = require('../utils/helpers');
+const { sendNotFound } = require('../utils/responses');
 
 /**
  * GET: All works
@@ -19,11 +17,7 @@ const getWorks = (req, res) => {
 const getWorkById = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const work = workItems.find(item => item.id === id);
-
-  if (!work) {
-    return res.status(404).json({ error: "Work not found" });
-  }
-
+  if (!work)  return sendNotFound(res, "Work not found");
   res.json(work);
 };
 
@@ -34,11 +28,7 @@ const getWorkById = (req, res) => {
 const getWorkByTitle = (req, res) => {
   const title = req.params.title;
   const work = workItems.find(item => includesIgnoreCase(item.title, title));
-
-  if (!work) {
-    return res.status(404).json({ error: "Work with given title not found" });
-  }
-
+  if (!work)  return sendNotFound(res, "Work with given title not found");
   res.json(work);
 };
 
@@ -49,11 +39,7 @@ const getWorkByTitle = (req, res) => {
 const getWorkByType = (req, res) => {
   const type = req.params.type;
   const filtered = workItems.filter(item => includesIgnoreCase(item.type, type));
-
-  if (!filtered.length) {
-    return res.status(404).json({ error: "No works found with given type" });
-  }
-
+  if (!filtered.length)  return sendNotFound(res, "No works found with given type");
   res.json(filtered);
 };
 
@@ -64,11 +50,7 @@ const getWorkByType = (req, res) => {
 const getWorkByYear = (req, res) => {
   const year = req.params.year;
   const filtered = workItems.filter(item => item.year === year);
-
-  if (!filtered.length) {
-    return res.status(404).json({ error: "No works found from that year" });
-  }
-
+  if (!filtered.length)  return sendNotFound(res, "No works found from that year");
   res.json(filtered);
 };
 
@@ -78,18 +60,13 @@ const getWorkByYear = (req, res) => {
  */
 const searchWorks = (req, res) => {
   const { title, type, year } = req.query;
-
   const filtered = workItems.filter(item => {
     const matchTitle = title ? includesIgnoreCase(item.title, title) : true;
     const matchType = type ? includesIgnoreCase(item.type, type) : true;
     const matchYear = year ? item.year === year : true;
     return matchTitle && matchType && matchYear;
   });
-
-  if (!filtered.length) {
-    return res.status(404).json({ error: "No matching works found" });
-  }
-
+  if (!filtered.length)  return sendNotFound(res, "No matching works found");
   res.json(filtered);
 };
 

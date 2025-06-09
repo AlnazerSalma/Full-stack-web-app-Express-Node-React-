@@ -1,18 +1,6 @@
 const pricingItems = require('../data/pricingItems');
-
-/**Case-insensitive */
-const includesIgnoreCase = (source = '', target = '') =>
-  source.toLowerCase().includes(target.toLowerCase());
-
-/**Normalize price string to number (e.g., "£7,500" → 7500) */
-const normalizePrice = (priceStr = '') =>
-  Number(priceStr.replace(/[^\d.]/g, ''));
-
-/**Extract currency symbol (e.g., "£10,000" → "£") */
-const getCurrencySymbol = (priceStr = '') => {
-  const match = priceStr.trim().match(/^[^\d\s]+/);
-  return match ? match[0] : null;
-};
+const { includesIgnoreCase, normalizePrice, getCurrencySymbol } = require('../utils/helpers');
+const { sendNotFound } = require('../utils/responses');
 
 /**
  * GET: All pricing plans
@@ -29,9 +17,7 @@ const getPricing = (req, res) => {
 const getPricingById = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const item = pricingItems.find(p => p.id === id);
-  if (!item) {
-    return res.status(404).json({ error: "Pricing plan not found" });
-  }
+ if (!item) return sendNotFound(res, "Pricing plan not found");
   res.json(item);
 };
 
@@ -42,9 +28,7 @@ const getPricingById = (req, res) => {
 const getPricingByTitle = (req, res) => {
   const title = req.params.title;
   const item = pricingItems.find(p => p.title === title);
-  if (!item) {
-    return res.status(404).json({ error: "Title not found" });
-  }
+  if (!item) return sendNotFound(res, "Title not found");
   res.json(item);
 };
 
@@ -56,9 +40,7 @@ const getPricingByTitle = (req, res) => {
 const getPricingByPrice = (req, res) => {
   const requestPrice = normalizePrice(req.params.price);
   const results = pricingItems.filter(p => normalizePrice(p.price) === requestPrice);
-  if (results.length === 0) {
-    return res.status(404).json({ error: "No plans with that price found" });
-  }
+  if (!results.length) return sendNotFound(res, "No plans with that price found");
   res.json(results);
 };
 
@@ -69,9 +51,7 @@ const getPricingByPrice = (req, res) => {
 const getPricingByCurrencySymbol = (req, res) => {
   const symbol = req.params.symbol;
   const results = pricingItems.filter(p => getCurrencySymbol(p.price) === symbol);
-  if (results.length === 0) {
-    return res.status(404).json({ error: `No plans found with currency symbol '${symbol}'` });
-  }
+  if (results.length === 0) return sendNotFound(res, "No plans found with currency symbol '${symbol}'");
   res.json(results);
 };
 
@@ -82,9 +62,7 @@ const getPricingByCurrencySymbol = (req, res) => {
 const getPricingByBillingCycle = (req, res) => {
   const billingCycle = req.params.billingCycle;
   const results = pricingItems.filter(p => p.billingCycle === billingCycle);
-  if (results.length === 0) {
-    return res.status(404).json({ error: "No plans with that billing cycle found" });
-  }
+  if (results.length === 0) if (!results.length) return sendNotFound(res, "No plans with that billing cycle found");
   res.json(results);
 };
 

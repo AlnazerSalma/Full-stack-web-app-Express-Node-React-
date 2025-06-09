@@ -1,8 +1,6 @@
 const careerItems = require('../data/careerItems');
-
-// Utility: Case-insensitive partial match
-const includesIgnoreCase = (source = '', target = '') =>
-  source.toLowerCase().includes(target.toLowerCase());
+const { includesIgnoreCase } = require('../utils/helpers');
+const { sendNotFound, sendBadRequest } = require('../utils/responses');
 
 /** 
  * GET: All careers 
@@ -20,13 +18,10 @@ const getCareers = (req, res) => {
 const getCareerById = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const career = careerItems.find(item => item.id === id);
-
-  if (!career) {
-    return res.status(404).json({ error: "Career not found" });
-  }
-
+  if (!career) return sendNotFound(res, "Career not found");
   const { title, location, mode, type } = career;
   res.json({ id: career.id, title, location, mode, type });
+  // res.json(career);
 };
 
 /** 
@@ -35,7 +30,6 @@ const getCareerById = (req, res) => {
  */
 const getFilteredCareers = (req, res) => {
   const { title, location, type, mode } = req.query;
-
   const filtered = careerItems.filter(item => (
     (!title || includesIgnoreCase(item.title, title)) &&
     (!location || includesIgnoreCase(item.location, location)) &&
@@ -52,15 +46,10 @@ const getFilteredCareers = (req, res) => {
  */
 const getCareersByType = (req, res) => {
   const { type } = req.params;
-
   const careers = careerItems.filter(item =>
     includesIgnoreCase(item.type, type)
   );
-
-  if (careers.length === 0) {
-    return res.status(404).json({ error: 'No careers found for this type' });
-  }
-
+  if (careers.length === 0)  return sendNotFound(res, 'No careers found for this type');
   res.json(careers);
 };
 
@@ -70,15 +59,10 @@ const getCareersByType = (req, res) => {
  */
 const getCareersByLocation = (req, res) => {
   const { location } = req.params;
-
   const careers = careerItems.filter(item =>
     includesIgnoreCase(item.location, location)
   );
-
-  if (careers.length === 0) {
-    return res.status(404).json({ error: 'No careers found for this location' });
-  }
-
+  if (careers.length === 0) return sendNotFound(res, 'No careers found for this location');
   res.json(careers);
 };
 
@@ -88,18 +72,13 @@ const getCareersByLocation = (req, res) => {
  */
 const searchCareers = (req, res) => {
   const { q } = req.query;
-
-  if (!q) {
-    return res.status(400).json({ error: "Missing search query" });
-  }
-
+  if (!q) return sendBadRequest(res, "Missing search query");
   const results = careerItems.filter(item =>
     includesIgnoreCase(item.title, q) ||
     includesIgnoreCase(item.location, q) ||
     includesIgnoreCase(item.type, q) ||
     includesIgnoreCase(item.mode, q)
   );
-
   res.json(results);
 };
 
