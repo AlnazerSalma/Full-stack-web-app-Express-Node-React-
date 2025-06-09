@@ -2,7 +2,7 @@ const careerData = [
     {
       id: 1,
       title: "Senior Designer",
-      location: "UK,Europe",
+      location: "UK",
       type: "Full-time",
       mode: "One Site",
       desc: "As a Senior Designer, you’ll be a driving force in shaping our creative output and studio culture.",
@@ -74,6 +74,64 @@ const careerData = [
         "Join a small, fast-moving team shaping the future of digital design...",
       application: "Apply via our portal or email design@haptic.com",
     },
+    {
+    id: 3,
+    title: "Frontend Developer",
+    location: "Jordan",
+    type: "Full-time",
+    mode: "Remote",
+    desc: "Help us build responsive, accessible web experiences for users worldwide",
+    image: "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201111215809/How-to-Become-a-Front-End-Developer-in-2020.png",
+    about: `Haptic is a digital-first creative studio that combines high-level engineering with design innovation. We create seamless and immersive digital experiences that scale.
+
+We're seeking a passionate Frontend Developer to bring designs to life, collaborating closely with designers, backend engineers, and product leads to deliver performant and engaging user interfaces.`,
+    responsibilities: [
+      "Implement responsive and accessible web interfaces based on Figma designs",
+      "Optimize applications for speed and scalability",
+      "Collaborate with design and backend teams to integrate APIs and manage data flow",
+      "Ensure cross-browser compatibility and mobile-first responsiveness",
+      "Contribute to our shared component library and design system",
+    ],
+    qualifications: [
+      "3+ years experience in frontend development",
+      "Proficient in HTML, CSS, JavaScript, and modern frameworks like React or Vue",
+      "Experience with TypeScript and state management tools (Redux, Zustand, etc.)",
+      "Strong understanding of responsive and accessible design",
+      "Experience with Git, CI/CD pipelines, and agile workflows",
+    ],
+    niceToHaves: ["Next.js", "TailwindCSS", "Unit and E2E testing", "Figma to code workflows", "Performance profiling"],
+    workingTogether: `You’ll be working closely with a passionate and diverse team that cares deeply about the user experience and clean code. We prioritize quality over quantity and are constantly iterating on our tools and processes to improve development efficiency.`,
+    application: "To apply, please send your GitHub profile and portfolio to our hiring team with the subject 'Frontend Developer Application'.",
+  },
+  {
+    id: 4,
+    title: "Backend Developer",
+    location: "Canada",
+    type: "Full-time",
+    mode: "Hybrid",
+    desc: "Seeking a Backend Developer to build and maintain APIs and data systems",
+    image: "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220612001912/Back-End-Developer-Roadmap-2022.jpg",
+    about: `At Haptic, we build backend systems that scale effortlessly, support modern frontend architectures, and are secure by design. As a Backend Developer, you'll work on high-impact systems used by millions and help define how we scale from startup to industry leader.
+
+We operate in a collaborative environment, valuing developer input at every stage of the product lifecycle.`,
+    responsibilities: [
+      "Design, build, and maintain scalable backend services and APIs",
+      "Collaborate with frontend developers and designers on data models and architecture",
+      "Ensure data integrity, security, and compliance standards are upheld",
+      "Maintain and optimize our cloud infrastructure (AWS, GCP, or Azure)",
+      "Implement monitoring, logging, and alerting systems for production services",
+    ],
+    qualifications: [
+      "4+ years of experience in backend development",
+      "Proficient in Node.js, Python, or Go",
+      "Experience with RESTful APIs, GraphQL, and WebSockets",
+      "Familiarity with relational and NoSQL databases",
+      "Understanding of CI/CD pipelines, Docker, and Kubernetes",
+    ],
+    niceToHaves: ["Microservices architecture", "Event-driven systems", "Serverless frameworks", "DevOps mindset", "Security best practices"],
+    workingTogether: `We value clean code, open communication, and thoughtful planning. You'll work alongside product designers and frontend engineers in an environment that encourages growth, experimentation, and collaboration.`,
+    application: "To apply, send your resume and relevant projects to our team. Please include a link to your GitHub or any APIs you've developed.",
+  },
   ];
   
   module.exports = careerData;

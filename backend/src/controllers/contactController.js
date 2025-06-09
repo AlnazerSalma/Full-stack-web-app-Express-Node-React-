@@ -65,8 +65,46 @@ const getContacts = (req, res) => {
     }
   });
 };
+// GET contact by specific field (id, name, or email)
+const getContactByField = (req, res) => {
+  const { id, name, email } = req.query;
+
+  fs.readFile(contactsFilePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Read error:", err);
+      return sendServerError(res, "Failed to read contacts");
+    }
+
+    let contacts = [];
+    try {
+      contacts = JSON.parse(data || "[]");
+    } catch (parseErr) {
+      console.error("Parse error:", parseErr);
+      return sendServerError(res, "Error parsing contacts");
+    }
+
+    let result = [];
+
+    if (id) {
+      result = contacts.filter(c => String(c.id) === String(id));
+    } else if (name) {
+      result = contacts.filter(c => c.user_name.toLowerCase() === name.toLowerCase());
+    } else if (email) {
+      result = contacts.filter(c => c.user_email.toLowerCase() === email.toLowerCase());
+    } else {
+      return sendNotFound(res, "Please provide a valid query: id, name, or email");
+    }
+
+    if (result.length === 0) {
+      return sendNotFound(res, "No contact found with provided query");
+    }
+
+    return sendOk(res, { contacts: result });
+  });
+};
 
 module.exports = {
   createContact,
   getContacts,
+  getContactByField,
 };

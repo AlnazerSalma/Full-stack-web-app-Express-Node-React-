@@ -10,7 +10,7 @@ const {
 } = require("../controllers/careerController");
 
 router.get("/", getCareers);
-router.get("/filter/search", getFilteredCareers);
+router.get("/filter", getFilteredCareers);
 router.get('/search', searchCareers); 
 router.get("/:id", getCareerById);
 router.get('/type/:type', getCareersByType);
